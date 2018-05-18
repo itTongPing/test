@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml" xmlns:th="://.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>入库报表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <head th:include="decorators/tags/main" />
+    <head th:include="decorators/tags/menuBaiyi" />
+    <style>
+    	.goodsInquiry>.flyer-searches>.keywords>span {
+		    display: inline-block;
+		    line-height: 29px;
+		    height: 29px;
+		    color: #424242;
+		    padding: 0px 10px;
+		    font-size: 14px;
+		    position: relative;
+		    top: 8px;
+		}
+    
+    </style>
+</head>
+<style>
+    .normalModal_storage {
+        display: none;
+    }
+    .skuNameWidth{
+		max-width:200px;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+	}
+</style>
+
+<body class="overflow-hidden">
+    <div class="wrapper no-left">
+        <ul class="breadcrumb">
+            <li>供应链报表</li>
+            <li>入库报表</li>
+        </ul>
+        <div class="main-container">
+
+            <div class="padding-md up-btn">
+                <div class="fun-btn">
+                   <button type="button" onclick="exportStorageList()"  class="btn btn-blue marginTB-xs" role:secResName="aukey-report_storage_export">导出</button>
+                   <input type="hidden" id="msg" th:value="${msg}" />
+                </div>
+                <div class="smart-widget-inner">
+                    <div class="search-form-div">
+                        <form class="form-inline no-margin" id="queryForm" onsubmit="false" action="javascript:;">
+                            <div class="search_l">
+                                <div class="form-group">
+                                    <label class="sr-only"></label>
+                                    <input type="text" id="queryNumber" class="form-control" placeholder="入库/采购/质检单号" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only"></label>
+                                    <input type="text" id="skuCode_s" class="form-control" placeholder="SKU搜索" />
+                                </div>
+                                <!--    <div class="form-group">
+                							<span>入库员</span>
+                							<input type="text" id="createUser" class="form-control" placeholder="" />
+              						  </div> -->
+
+                                <div class="form-group">仓库
+                                    <select id="signWarehouse" class="selectpicker show-tick form-control" multiple="multiple" data-live-search="false">
+                   								 <option value ='' selected = 'true'>全部</option>
+                                                <option th:each="signWarehouse :${signWarehouse}" th:value="${signWarehouse.stock_id}" th:text="${signWarehouse.warehouse_name}"></option>
+                    						</select>
+                                </div>
+                                <div class="form-group">入库时间
+                                    <div class="btn-group time_length">
+                                        <input size="16" type="text" id="createDateStart" name="createDateStart" value="" placeholder="开始时间" class="form-control form_datetime" data-date-format="yyyy-mm-dd"></input>
+                                        <input size="16" type="text" id="createDateEnd" name="cteateDateEnd" value="" placeholder="结束时间" class="form-control form_datetime" data-date-format="yyyy-mm-dd"></input>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">采购员</label>
+                                    <input type="text" id="buyerName" class="form-control" placeholder="采购员搜索" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">供应商</label>
+                                    <input type="text" id="supplier" class="form-control" placeholder="供应商搜索" />
+                                </div>
+                               
+                                <!-- 高级搜索 -->
+                                <div class="btn-group marginTB-xs advanced-search" style="float: none; display: inline-block;margin-left:12px;">
+                                    <a type="button" data-toggle="dropdown" onclick="searchH()" class="uperSearch"> 高级搜索<img src="/images/new-vision/nav_right_user-name_arrow.png" /></a>
+                                </div>
+                            </div>
+                            <div class="search_r">
+                                <button id="sel-button" type="button" onclick="searchResult()" class="btn btn-success marginTB-xs">搜索</button>
+                                <img class="resetbutton" src="/images/icon_Advanced-search.png" onclick="searchReset()" />
+                            </div>
+                            <ul class="dropdown-menu" role="menu" id="searchH" style="display: none;">
+								
+                                
+                                <div class="form-group">
+                                <label for="stockNo">目标仓</label>
+                                    <div class="btn-group goodsInquiry toGoodsInquiry">
+                                        <!--onkeyup="searchenter(this,event,0)"  -->
+                                        <input type="text" id="goodsInquiry"  class="form-control"  onclick="javascript:this.select()" autocomplete="off"  onblur="checkValueIsempty(this)" placeholder="输入关键字检索"/>
+                                    </div>
+                                </div>
+								
+                                <!-- 法人主体 -->
+                                <div class="form-group" style="margin:5px 0">法人主体
+                                    <select class="selectpicker show-tick form-control" multiple="multiple"
+                                            id="legaler" data-live-search="false" name = 'legaler'>
+                                        <option value='' selected='true'>全部</option>
+                                        <option th:each="legaler:${legalers}"
+                                                th:text="${legaler}"></option>
+                                    </select>
+                                </div>
+
+                         	<div class="form-group" style="margin:5px 0">含税
+                               <select class="selectpicker show-tick form-control" id="includeTax" data-live-search="false">
+                                        <option value='' selected="true">全部</option>
+                                        <option value='0' >否</option>
+                                        <option value='1' >是</option>
+                                    </select> 
+                                </div> 
+                              <div class="form-group">
+                                    <label class="sr-only"></label>
+                                    <input type="text" id="deptName" class="form-control" placeholder="需求部门搜索" />
+                              </div>   
+                              <div class="form-group">
+                                    <label class="sr-only"></label>
+                                    <input type="text" id="saleName" class="form-control" placeholder="销售人员搜索" />
+                              </div> 
+                              
+                              
+								<!--  
+                                <div class="form-group" style="margin:5px 0">需求部门
+                              
+                                      <select class="selectpicker show-tick form-control" multiple="multiple"
+	                                        id="department" data-live-search="false" name = 'department'>
+	                                    <option value='-1' selected='true'>全部</option>
+	                                    <option th:each="department :${departments}"
+	                                            th:value="${department.groupId}"
+	                                            th:text="${department.groupName}"></option>
+	                                </select>
+                                </div>-->
+<!-- 
+                                <div class="form-group" style="margin:5px 0">采购部门
+                                    <select class="selectpicker show-tick form-control" multiple="multiple"
+                                            id="department" data-live-search="false" name = 'department'>
+                                        <option value='-1' selected='true'>全部</option>
+                                        <option th:each="department :${departments}"
+                                                th:value="${department.groupId}"
+                                                th:text="${department.groupName}"></option>
+                                    </select>
+                                </div> -->
+                          <div class="form-group" style="margin:5px 0">运输方式
+                                    <select class="selectpicker show-tick" id="transferType" data-live-search="false">
+                                        <option value='' selected="true">全部</option>
+                                        <option value='1' >海运</option>
+                                        <option value='0' >空运</option>
+                                        <option value='2' >无</option>
+                                        <option value='3' >铁运</option>
+                                    </select>
+                                </div> 
+                            </ul>
+                        </form>
+                    </div>
+
+                    <!-- 弹出提示框 -->
+                    <div class="box">至少选择一项</div>
+                    
+                   <table class="table-scroll table table-striped" id="table" style="margin-top: 0"  >
+                	 <thead class="tableThead">
+                	    <th data-field = 'states' data-checkbox="true" ></th>
+                    	<th data-field = 'storageNumber'>入库单号</th>
+                    	<th data-field = 'qualityInspectionNumber'  >质检单号</th>
+						<th data-field = 'purchaseNumber' >采购单号</th>
+						<th data-field = 'skuCode'>SKU</th>
+						<th data-field = 'skuName'>SkU名称</th>
+						<th data-field = 'inspectorName' >质检员</th>
+						<th data-field = 'createUserName' >入库员</th>
+						<th data-field = 'warehouseName'  >仓库名称</th>
+                   		<th data-field = 'nondefectiveNumber' data-formatter = 'pcsFormatter' >良品入库数量</th>
+                   		<th data-field = 'rejectsNumber' data-formatter = 'pcsFormatter' >不良品入库数量</th>
+                   		<th data-field = 'stockInSum'  data-formatter = 'formatterMoney'>入库金额</th>
+                   		<th data-field = 'stockname'  >目标仓</th>
+                   		<th data-field = 'corporationName' >法人主体</th>
+                   		<th data-field = 'transportTypeName' >运输方式</th>
+                   		<th data-field = 'isTax' data-formatter = 'isTaxFormatter'  >是否含税</th>
+                   		<th data-field = 'createDate' >入库时间</th>
+                   		<th data-field = 'reqUserName'  >采购人员</th>
+                   		<th data-field = 'saleName'  >销售人员</th>
+                   		<th data-field = 'deptName'  >部门名称</th>
+                   		<th data-field = 'type'  data-formatter = 'typeFormatter' >数据来源</th>
+                   		<th data-field = 'supplier_name' role:secResName="aukey-report_storage_supplier"  >供应商</th>
+                   		<th data-field = 'tax_unit_price' role:secResName="aukey-report_storage_price"  >含税单价</th>
+                   		<th data-field = 'no_tax_price' role:secResName="aukey-report_storage_price"  >不含税单价</th>
+                   		<th data-field = 'currency' role:secResName="aukey-report_storage_currency"  >币别</th>
+                    </thead>
+                </table>
+                   
+                 <!--   <table class="table-scroll table table-striped" id="table" style="margin-top: 0"> </table>-->
+                </div>
+                <!-- ./smart-widget-inner -->
+            </div>
+            <!-- ./padding-md -->
+        </div>
+        <!-- /main-container -->
+		<!-- 引入页脚 -->
+    	<head th:include="decorators/tags/footer_mini"/>
+    </div>
+    <!-- /wrapper -->
+
+    <!--<script type="text/javascript" src="libs/js-xlsx/xlsx.core.min.js"></script>-->
+	<script th:src="@{'/flyer/js/flyer.ui.searches.js?v='+${version}}" ></script>
+    <script th:src="@{'/js/warehouse.js?v='+${version}}"></script>
+
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        $(document).keyup(function(event){
+            var event = event || window.event; // 获取event对象
+            var keyCode = event.keyCode || event.which; //获取keyCode
+            //按enter键触发表格搜索
+            if (keyCode == 13){
+                $('#sel-button').trigger('click');
+            }
+        });
+        function searchReset() {
+            $('#queryForm')[0].reset();
+            $('.selectpicker').selectpicker('val', '');
+            $("#queryForm").find('.new-box').each(function() //清除所有的单选框
+                {
+                    $(this).parent().Val($(this).find('li').first().attr("value"));
+                }
+            );
+        }
+
+        function pcsFormatter(value, row, index) {
+            return value + " pcs";
+        }
+
+        function typeFormatter(value, row, index) {
+        	var storageNumber = row.storageNumber;
+            if (storageNumber.substring(0,3) == "RKB") {
+                return "内部";
+            }
+            return "外部";
+        }
+
+       
+                
+        // 多选框的功能
+        multipleChoice('');//该方法公共方法里有封装直接调用
+        
+     // 新增仓库查询
+     // 检索的时候获取数据源
+     function requestData(keyword) {
+         var _this = this;
+         var queryParams = _this.options.queryParams;// 查询参数
+         var searchName = _this.options.searchName;
+         queryParams[searchName] = keyword.trim().toUpperCase();
+         var data = localStorage.getItem(searchName);
+         $.ajax({
+             url:_this.options.url,
+             data:queryParams,
+             success:function(data){
+                 _this._data = data;
+                 _this.render(data);
+                 _this.eventSelected();
+             }
+         });
+     }
+	
+     // 自动检索插件的参数
+        var searchOption = {
+            url:'',// 请求数据的url
+            searchName: "warehouse_name",// 搜索的关键字名字
+            fieldValue: "stock_id",// id
+            fieldName: "warehouse_name",// 字段名字
+            separtor: ",",// 多选的时候使用的分隔符
+            spaceTime: 100, // 单位是毫秒 延迟时间
+            // 选中之后的处理函数
+            fnSelected: function(event) {
+                var _this = this;
+                $(event.target).attr('data-select',true);
+            },
+            // 用户重写ajax请求 获取数据的方式
+            requestData:requestData,
+            placeholder:""
+        };
+        
+     // 仓库号的自动检索功能
+        var intwarehouseOption = searchOption;
+            intwarehouseOption.url = '/storageReport/querySock';
+            intwarehouseOption.searchName="stockName",// 搜索的关键字名字
+            intwarehouseOption.fieldValue="stock_id",// id
+            intwarehouseOption.fieldName="warehouse_name",// 显示在输入框中的字段名字
+            intwarehouseOption.queryParams = {type:1};// 设置请求参数
+        $(".toGoodsInquiry").searches(intwarehouseOption);// 调用实例化方法
+        // 输入框检索的时候 光标移开的时候绑定的事件 判断用户是否选中的值 没有选中的话 直接清空输入框
+        function checkValueIsempty (obj){
+        	console.info('----------');
+        	console.info($(obj).data('select'));
+            if (!$(obj).data('select')) {
+                $(obj).val('');
+            }
+        }
+	
+        
+        
+
+        /*]]>*/
+    </script>
+</body>
+
+</html>

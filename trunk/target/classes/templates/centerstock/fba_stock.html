@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml"
+	xmlns:th="://.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>查看FBA库存</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<head th:include="decorators/tags/main" />
+<link rel="stylesheet" th:href="@{'/css/require-form.css?v='+${version}}"/>
+<head th:include="decorators/tags/menuBaiyi" />
+<head th:include="decorators/tags/footer_mini" />
+<style>
+	#sku
+	{
+		background: none;
+    	border: none;
+    	text-align: left;
+    	height: inherit;
+    	color: #428bca;
+    	box-shadow: none;
+	}
+	.ulStyle
+	{
+		float:left;
+		list-style:none;
+		/* margin-top: 25px; */
+		margin-left: 195px;
+	}
+	.titleClass
+	{
+		width: 100%;
+	    text-align: center;
+	    font-size: 20px;
+	    margin-left: -200px;
+	}
+	.ulStyleQB
+	{
+		
+	}
+</style>
+</head>
+<body class="overflow-hidden">
+	<div  class="wrapper preload no-left">
+		<ul class="breadcrumb">
+			<li><span class="primary-font"><i class="icon-home"></i></span>统计报表</li>
+			<li>中央库存查询</li>
+			<li>FBA库存查询</li>
+		</ul>
+	</div>
+	<div class="main-container ">
+		<div class="padding-md">
+	    	<form class="form-inline no-margin" id='queryForm2'>
+	    		<div class="fun-btn">
+	        		<div class="divHead">
+						<ul class="ulStyleQB">
+							<!-- <li class="ulStyle" style="width:19%"></li> -->
+							<li class="ulStyle" style="width:99%"><h2 class='titleClass'>FBA库存</h2></li>
+						</ul>
+					</div>
+	        	</div>
+	        	<div class="search-form-div">
+					<div class="search_l">
+						<div class="form-group">
+							SKU:	<input type="text" id='sku' th:value="${sku}" readonly="readonly"/>
+						</div>
+						<div class="form-group">账号CODE
+							<select id="accountIds" data-live-search="true" class="selectpicker show-tick form-control" multiple="multiple">
+								<option value='-1' selected='selected'>全部</option>
+								<option th:each="account:${accountList}" th:value="${account.accountId}" th:text="${account.accountNameCode}"></option>
+							</select>
+						</div>
+						<div class="form-group">地区
+							<select id="siteGroupIds" class="selectpicker show-tick form-control" multiple="multiple" data-live-search="false">
+								<option value='-1' selected='selected'>全部</option>
+								<option value="11">北美洲</option>
+								<option value="12">欧洲</option>
+								<option value="13">远东地区</option>
+							</select>
+						</div>
+					</div>
+					<div class="search_r">
+						<button type="button" class="btn btn-success marginTB-xs" onclick="searchResult()">搜索</button>
+						<img class="resetbutton" src="/images/icon_Advanced-search.png" onclick="searchReset()" />
+					</div>
+				</div>
+	    		<div class="smart-widget-inner product_info">
+	    			
+					<table id="fbaStockTable" class="table-scroll table table-hover"></table>
+				</div>
+	    	</form>
+		</div>
+	</div>
+	<script th:src="@{'/js/centerstock/fba_stock.js?v='+${version}}"></script>
+</body>
+</html>

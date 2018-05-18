@@ -1,0 +1,323 @@
+2018-05-15 16:05:24,829  INFO AnnotationConfigApplicationContext:582 - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@2d5f428a: startup date [Tue May 15 16:05:24 CST 2018]; root of context hierarchy
+2018-05-15 16:05:24,942  INFO Version:30 - HV000001: Hibernate Validator 5.3.5.Final
+2018-05-15 16:05:25,173  INFO AutowiredAnnotationBeanPostProcessor:155 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-05-15 16:05:25,220  INFO PostProcessorRegistrationDelegate$BeanPostProcessorChecker:325 - Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7b8bb85a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-15 16:05:25,790  INFO Application:637 - No active profile set, falling back to default profiles: default
+2018-05-15 16:05:25,812  INFO AnnotationConfigEmbeddedWebApplicationContext:582 - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4436ec30: startup date [Tue May 15 16:05:25 CST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@2d5f428a
+2018-05-15 16:05:28,813  INFO DefaultListableBeanFactory:828 - Overriding bean definition for bean 'scopedTarget.oauth2ClientContext' with a different definition: replacing [Root bean: class [null]; scope=session; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=false; primary=false; factoryBeanName=org.springframework.security.oauth2.config.annotation.web.configuration.OAuth2ClientConfiguration$OAuth2ClientContextConfiguration; factoryMethodName=oauth2ClientContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/security/oauth2/config/annotation/web/configuration/OAuth2ClientConfiguration$OAuth2ClientContextConfiguration.class]] with [Root bean: class [null]; scope=session; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=false; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2RestOperationsConfiguration$SessionScopedConfiguration$ClientContextConfiguration; factoryMethodName=oauth2ClientContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/security/oauth2/client/OAuth2RestOperationsConfiguration$SessionScopedConfiguration$ClientContextConfiguration.class]]
+2018-05-15 16:05:28,899  INFO DefaultListableBeanFactory:828 - Overriding bean definition for bean 'dataSource' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Dbcp; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Dbcp.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Tomcat; factoryMethodName=dataSource; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Tomcat.class]]
+2018-05-15 16:05:29,303  INFO DefaultListableBeanFactory:828 - Overriding bean definition for bean 'managementServletContext' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcHypermediaManagementContextConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfiguration; factoryMethodName=managementServletContext; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointWebMvcAutoConfiguration.class]]
+2018-05-15 16:05:29,348  INFO RepositoryConfigurationDelegate:165 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-05-15 16:05:29,567  INFO RepositoryConfigurationDelegate:165 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-05-15 16:05:29,974  WARN ConfigurationClassPostProcessor:373 - Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-15 16:05:30,249  INFO GenericScope:263 - BeanFactory id=e8c4e251-c379-3cf7-ac8a-4d7fac9f79a6
+2018-05-15 16:05:30,295  INFO AutowiredAnnotationBeanPostProcessor:155 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-05-15 16:05:30,565  INFO PostProcessorRegistrationDelegate$BeanPostProcessorChecker:325 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5f71b55d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-15 16:05:30,945  INFO PostProcessorRegistrationDelegate$BeanPostProcessorChecker:325 - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7b8bb85a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-15 16:05:31,622  INFO TomcatEmbeddedServletContainer:89 - Tomcat initialized with port(s): 8088 (http)
+2018-05-15 16:05:31,808  INFO ContextLoader:276 - Root WebApplicationContext: initialization completed in 5996 ms
+2018-05-15 16:05:33,818  INFO CglibAopProxy:268 - Final method [protected final org.springframework.context.ApplicationContext org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.getApplicationContext()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-05-15 16:05:33,818  INFO CglibAopProxy:268 - Final method [protected final org.springframework.security.config.annotation.web.builders.HttpSecurity org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter.getHttp() throws java.lang.Exception] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-05-15 16:05:34,171  INFO FilterRegistrationBean:258 - Mapping filter: 'metricsFilter' to: [/*]
+2018-05-15 16:05:34,172  INFO FilterRegistrationBean:258 - Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-15 16:05:34,172  INFO FilterRegistrationBean:258 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-15 16:05:34,173  INFO FilterRegistrationBean:258 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-15 16:05:34,173  INFO FilterRegistrationBean:258 - Mapping filter: 'OAuth2ClientContextFilter' to: [/*]
+2018-05-15 16:05:34,174  INFO FilterRegistrationBean:258 - Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-15 16:05:34,177  INFO DelegatingFilterProxyRegistrationBean:258 - Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-05-15 16:05:34,177  INFO FilterRegistrationBean:258 - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2018-05-15 16:05:34,178  INFO FilterRegistrationBean:258 - Mapping filter: 'menuInstanceFilter' to: [/*]
+2018-05-15 16:05:34,178  INFO FilterRegistrationBean:258 - Mapping filter: 'applicationContextIdFilter' to: [/*]
+2018-05-15 16:05:34,178  INFO ServletRegistrationBean:190 - Mapping servlet: 'dispatcherServlet' to [/]
+2018-05-15 16:05:35,151  INFO LocalContainerEntityManagerFactoryBean:349 - Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-15 16:05:35,174  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-15 16:05:35,432  INFO Version:37 - HHH000412: Hibernate Core {5.0.12.Final}
+2018-05-15 16:05:35,434  INFO Environment:213 - HHH000206: hibernate.properties not found
+2018-05-15 16:05:35,436  INFO Environment:317 - HHH000021: Bytecode provider name : javassist
+2018-05-15 16:05:35,503  INFO Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-05-15 16:05:35,818  INFO Dialect:156 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2018-05-15 16:05:36,393  INFO LocalContainerEntityManagerFactoryBean:379 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-15 16:05:58,049  INFO RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4436ec30: startup date [Tue May 15 16:05:25 CST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@2d5f428a
+2018-05-15 16:05:58,060  INFO RequestMappingHandlerAdapter:566 - Detected ResponseBodyAdvice bean in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2018-05-15 16:05:58,257  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerSkuDepartRelation/index]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.centerstock.CenterSkuDepartRelationController.index(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,258  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerSkuDepartRelation/search]}" onto public com.aukey.report.domain.base.TableData<com.aukey.report.domain.centerstock.CenterSkuDepartRelation> com.aukey.report.web.centerstock.CenterSkuDepartRelationController.search(int,int,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,258  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerSkuDepartRelation/upLoadFile]}" onto public com.aukey.report.domain.centerstock.Result com.aukey.report.web.centerstock.CenterSkuDepartRelationController.upLoadFile(org.springframework.web.multipart.MultipartFile,org.springframework.ui.ModelMap,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,261  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/index]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.centerstock.CenterStockReportController.index(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,262  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterStockReport> com.aukey.report.web.centerstock.CenterStockReportController.search(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,263  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search/overseaStock]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterOverseaWarehouse> com.aukey.report.web.centerstock.CenterStockReportController.searchOverseaStock(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,263  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search/overseaStockTransfer]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterOverseaTransportInTransit> com.aukey.report.web.centerstock.CenterStockReportController.searchOverseaStockTransfer(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,263  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search/firstAirTransfer]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterHeadInTransit> com.aukey.report.web.centerstock.CenterStockReportController.searchFirstAirTransfer(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,264  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search/transferWarehouseCount]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterDomesticTransferWarehouse> com.aukey.report.web.centerstock.CenterStockReportController.searchTransferWarehouseCount(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,264  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search/purchaseTransfer]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterPurchaseInTransit> com.aukey.report.web.centerstock.CenterStockReportController.searchPurchaseTransfer(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,264  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search/fbaTransfer]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterFbaInTransit> com.aukey.report.web.centerstock.CenterStockReportController.searchFbaTransfer(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,265  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/search/fbaStock]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.centerstock.CenterFbaStockCount> com.aukey.report.web.centerstock.CenterStockReportController.searchFbaStock(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,265  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/export]}" onto public java.lang.String com.aukey.report.web.centerstock.CenterStockReportController.export(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,265  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/centerStock/stock/index]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.centerstock.CenterStockReportController.stockIndex(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,268  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/declare/index]}" onto public java.lang.String com.aukey.report.web.DeclareReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,269  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/declare/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.DeclareReportVO> com.aukey.report.web.DeclareReportController.search(com.aukey.report.dto.DeclareReportParam,int,int)
+2018-05-15 16:05:58,270  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/declare/detail]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.DeclareItemVO> com.aukey.report.web.DeclareReportController.detail(com.aukey.report.dto.DeclareReportParam,int,int)
+2018-05-15 16:05:58,270  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/declare/declareInvoiceExport]}" onto public void com.aukey.report.web.DeclareReportController.declareInvoiceExport(com.aukey.report.dto.DeclareReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,270  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/declare/getSupplierInfo],methods=[GET]}" onto public java.util.List<com.aukey.report.domain.StrictSupplier> com.aukey.report.web.DeclareReportController.getSupplierAllInfo(java.lang.String)
+2018-05-15 16:05:58,271  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/declare/export]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.DeclareReportController.export(com.aukey.report.dto.DeclareReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,271  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/declare/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.DeclareReportController.preExport(com.aukey.report.dto.DeclareReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,273  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/finance/index]}" onto public java.lang.String com.aukey.report.web.finance.PurchaseFinanceReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,274  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/finance/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.PurchaseReportVO> com.aukey.report.web.finance.PurchaseFinanceReportController.search(com.aukey.report.dto.PurchaseReportParam,int,int,javax.servlet.http.HttpServletRequest)
+2018-05-15 16:05:58,274  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/finance/getSupplierInfo]}" onto public java.util.List<com.aukey.report.domain.StrictSupplier> com.aukey.report.web.finance.PurchaseFinanceReportController.getSupplierAllInfo(java.lang.String)
+2018-05-15 16:05:58,275  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/finance/export]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.finance.PurchaseFinanceReportController.export(com.aukey.report.dto.PurchaseReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,275  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/finance/preExport]}" onto public com.aukey.report.domain.base.Result com.aukey.report.web.finance.PurchaseFinanceReportController.preExport(com.aukey.report.dto.PurchaseReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,275  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/finance/searchCount]}" onto public com.aukey.report.domain.base.Result com.aukey.report.web.finance.PurchaseFinanceReportController.searchCount(com.aukey.report.dto.PurchaseReportParam,javax.servlet.http.HttpServletRequest)
+2018-05-15 16:05:58,276  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/finance/emailExport],methods=[GET]}" onto public synchronized void com.aukey.report.web.finance.PurchaseFinanceReportController.emailExport(javax.servlet.http.HttpServletRequest,com.aukey.report.dto.PurchaseReportParam)
+2018-05-15 16:05:58,277  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/FnskuAndSkuMatching/index]}" onto public java.lang.String com.aukey.report.web.FnskuAndSkuMatchingController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,277  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/FnskuAndSkuMatching/search]}" onto public com.aukey.domain.base.TableData<com.aukey.report.domain.FnskuAndSkuMatching> com.aukey.report.web.FnskuAndSkuMatchingController.search(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,278  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/FnskuAndSkuMatching/export]}" onto public java.lang.String com.aukey.report.web.FnskuAndSkuMatchingController.export(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,279  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/good/index]}" onto public java.lang.String com.aukey.report.web.GoodReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,280  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/good/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.GoodReportVO> com.aukey.report.web.GoodReportController.search(com.aukey.report.dto.GoodReportParam,int,int)
+2018-05-15 16:05:58,280  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/good/export]}" onto public java.lang.String com.aukey.report.web.GoodReportController.export(com.aukey.report.dto.GoodReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,281  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/good/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.GoodReportController.preExport(com.aukey.report.dto.GoodReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,282  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/inventory/index]}" onto public java.lang.String com.aukey.report.web.InventoryReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,282  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/inventory/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.InventoryReportVO> com.aukey.report.web.InventoryReportController.search(com.aukey.report.dto.InventoryReportParam,int,int)
+2018-05-15 16:05:58,283  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/inventory/export]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.InventoryReportController.export(com.aukey.report.dto.InventoryReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,283  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/inventory/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.InventoryReportController.preExport(com.aukey.report.dto.InventoryReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,284  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/payOrder/index]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.PayOrderReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,285  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/payOrder/count]}" onto public long com.aukey.report.web.PayOrderReportController.count(com.aukey.report.dto.PayOrderReportParam,int,int,javax.servlet.http.HttpServletRequest)
+2018-05-15 16:05:58,285  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/payOrder/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.PayOrderReportVo> com.aukey.report.web.PayOrderReportController.search(com.aukey.report.dto.PayOrderReportParam,int,int,javax.servlet.http.HttpServletRequest)
+2018-05-15 16:05:58,286  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/payOrder/gainSupplierDataByAlias],methods=[GET]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.PayOrderReportController.gainSupplierDataForAjax(java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,286  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/payOrder/export]}" onto public void com.aukey.report.web.PayOrderReportController.export(com.aukey.report.dto.PayOrderReportParam,int,int,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,288  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/exe/index]}" onto public java.lang.String com.aukey.report.web.PurchaseExeReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,288  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/exe/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.PurchaseExeReportVO> com.aukey.report.web.PurchaseExeReportController.search(com.aukey.report.dto.PurchaseExeReportParam,int,int)
+2018-05-15 16:05:58,289  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/exe/export]}" onto public com.aukey.report.domain.base.Result com.aukey.report.web.PurchaseExeReportController.export(org.springframework.web.servlet.mvc.support.RedirectAttributes,com.aukey.report.dto.PurchaseExeReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,289  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/exe/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.PurchaseExeReportController.preExport(com.aukey.report.dto.PurchaseExeReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,290  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/index]}" onto public java.lang.String com.aukey.report.web.PurchaseReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,291  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.PurchaseReportVO> com.aukey.report.web.PurchaseReportController.search(com.aukey.report.dto.PurchaseReportParam,int,int,javax.servlet.http.HttpServletRequest)
+2018-05-15 16:05:58,291  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/getSupplierInfo]}" onto public java.util.List<com.aukey.report.domain.StrictSupplier> com.aukey.report.web.PurchaseReportController.getSupplierAllInfo(java.lang.String)
+2018-05-15 16:05:58,292  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/export]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.PurchaseReportController.export(com.aukey.report.dto.PurchaseReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,292  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchase/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.PurchaseReportController.preExport(com.aukey.report.dto.PurchaseReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,293  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchaseSellStock/index]}" onto public java.lang.String com.aukey.report.web.purchaseSell.PurchaseSellStockController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,295  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchaseSellStock/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.domain.purchaseSell.PurchaseSellStockVO> com.aukey.report.web.purchaseSell.PurchaseSellStockController.search(com.aukey.report.dto.purchaseSell.PurchaseSellStockParam,int,int)
+2018-05-15 16:05:58,296  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchaseSellStock/export]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.purchaseSell.PurchaseSellStockController.export(com.aukey.report.dto.purchaseSell.PurchaseSellStockParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,296  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/purchaseSellStock/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.purchaseSell.PurchaseSellStockController.preExport(com.aukey.report.dto.purchaseSell.PurchaseSellStockParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,298  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/PurchaseWarn/index]}" onto public java.lang.String com.aukey.report.web.PurchaseWarnReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,299  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/PurchaseWarn/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.domain.PurchaseWarnReport> com.aukey.report.web.PurchaseWarnReportController.search(javax.servlet.http.HttpServletRequest,com.aukey.report.dto.PurchaseWarnParam,int,int)
+2018-05-15 16:05:58,299  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/PurchaseWarn/getSupplierInfo],methods=[GET]}" onto public java.util.List<com.aukey.report.domain.StrictSupplier> com.aukey.report.web.PurchaseWarnReportController.getSupplierAllInfo(java.lang.String)
+2018-05-15 16:05:58,300  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/PurchaseWarn/export]}" onto public java.lang.String com.aukey.report.web.PurchaseWarnReportController.export(org.springframework.web.servlet.mvc.support.RedirectAttributes,com.aukey.report.dto.PurchaseWarnParam,int,int,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,301  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/GetRoleList],methods=[GET]}" onto public com.aukey.domain.base.APIResult com.aukey.report.web.RoleRestcontroller.GetRoleList(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,302  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/stock/age/index]}" onto public java.lang.String com.aukey.report.web.StockAgeReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,303  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/stock/age/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.StockAgeReportVO> com.aukey.report.web.StockAgeReportController.search(com.aukey.report.dto.StockAgeReportParam,int,int)
+2018-05-15 16:05:58,303  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/stock/age/export]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.StockAgeReportController.export(com.aukey.report.dto.StockAgeReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,304  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/stock/age/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.StockAgeReportController.preExport(com.aukey.report.dto.StockAgeReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,304  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/stockverify/index]}" onto public org.springframework.web.servlet.ModelAndView com.aukey.report.web.stockverify.StockVerifyController.index(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,305  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/stockverify/search]}" onto public com.aukey.report.domain.base.TableData<com.aukey.report.domain.stockverify.StockVerifyReport> com.aukey.report.web.stockverify.StockVerifyController.search(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,306  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/stockverify/export]}" onto public java.lang.String com.aukey.report.web.stockverify.StockVerifyController.export(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,307  INFO RequestMappingHandlerMapping:543 - Mapped "{[/storageReport/index]}" onto public java.lang.String com.aukey.report.web.StorageReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,308  INFO RequestMappingHandlerMapping:543 - Mapped "{[/storageReport/exportStorageList]}" onto public java.lang.String com.aukey.report.web.StorageReportController.export(org.springframework.web.servlet.mvc.support.RedirectAttributes,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,308  INFO RequestMappingHandlerMapping:543 - Mapped "{[/storageReport/search]}" onto public com.aukey.report.domain.base.TableData<com.aukey.report.domain.StorageReport> com.aukey.report.web.StorageReportController.showReceiveList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,309  INFO RequestMappingHandlerMapping:543 - Mapped "{[/storageReport/querySock]}" onto public java.util.List<com.aukey.report.domain.StockModel> com.aukey.report.web.StorageReportController.querySock(java.lang.String,java.lang.Integer)
+2018-05-15 16:05:58,310  INFO RequestMappingHandlerMapping:543 - Mapped "{[/TransferExport/search],methods=[GET]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.domain.transferExportInfo> com.aukey.report.web.TransferOverseaController.search(int,int,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,310  INFO RequestMappingHandlerMapping:543 - Mapped "{[/TransferExport/uploadFile],methods=[POST]}" onto public com.aukey.report.domain.base.Result com.aukey.report.web.TransferOverseaController.upLoadFile(org.springframework.web.multipart.MultipartFile,org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,310  INFO RequestMappingHandlerMapping:543 - Mapped "{[/TransferExport/index],methods=[GET]}" onto public java.lang.String com.aukey.report.web.TransferOverseaController.indexHtml(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,310  INFO RequestMappingHandlerMapping:543 - Mapped "{[/TransferExport/exportFile],methods=[GET]}" onto public com.aukey.report.domain.base.Result com.aukey.report.web.TransferOverseaController.exportFile(java.lang.String,java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,312  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/transfer/index]}" onto public java.lang.String com.aukey.report.web.TransferReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,312  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/transfer/search]}" onto public com.aukey.report.utils.page.TableData<com.aukey.report.vo.TransferReportVO> com.aukey.report.web.TransferReportController.search(com.aukey.report.dto.TransferReportParam,int,int)
+2018-05-15 16:05:58,312  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/transfer/export]}" onto public java.lang.String com.aukey.report.web.TransferReportController.export(org.springframework.web.servlet.mvc.support.RedirectAttributes,com.aukey.report.dto.TransferReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,313  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/transfer/preExport]}" onto public com.aukey.util.AjaxResponse com.aukey.report.web.TransferReportController.preExport(com.aukey.report.dto.TransferReportParam,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,313  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/warehouseAssessmentReport/index]}" onto public java.lang.String com.aukey.report.web.WarehouseAssessmentReportController.index(org.springframework.ui.ModelMap)
+2018-05-15 16:05:58,314  INFO RequestMappingHandlerMapping:543 - Mapped "{[/report/warehouseAssessmentReport/search]}" onto public com.aukey.report.domain.base.TableData<com.aukey.report.domain.WarehouseAssessmentReport> com.aukey.report.web.WarehouseAssessmentReportController.showReceiveList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-05-15 16:05:58,315  INFO RequestMappingHandlerMapping:543 - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-05-15 16:05:58,316  INFO RequestMappingHandlerMapping:543 - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-05-15 16:05:58,439  INFO SimpleUrlHandlerMapping:362 - Mapped URL path [/resources/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-15 16:05:58,439  INFO SimpleUrlHandlerMapping:362 - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-15 16:05:58,439  INFO SimpleUrlHandlerMapping:362 - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-15 16:05:58,475  INFO ExceptionHandlerExceptionResolver:273 - Detected @ExceptionHandler methods in CustomizerError
+2018-05-15 16:05:58,475  INFO ExceptionHandlerExceptionResolver:279 - Detected ResponseBodyAdvice implementation in org.springframework.boot.actuate.autoconfigure.EndpointWebMvcHypermediaManagementContextConfiguration$ActuatorEndpointLinksAdvice
+2018-05-15 16:05:58,537  INFO SimpleUrlHandlerMapping:362 - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-05-15 16:05:59,470  INFO DefaultSecurityFilterChain:43 - Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/fonts/**'], Ant [pattern='/ztree/**'], Ant [pattern='/images/**'], Ant [pattern='/bootstrap*/**'], Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/favicon.ico'], Ant [pattern='/webjars/**'], Ant [pattern='/images/**'], Ant [pattern='/bootstrap/**'], Ant [pattern='/jquery/**'], Ant [pattern='/index'], Ant [pattern='/health'], Ant [pattern='/metrics'], Ant [pattern='/dump'], Ant [pattern='/info'], Ant [pattern='/logging'], Ant [pattern='/jmx'], Ant [pattern='/threads'], Ant [pattern='/trace'], Ant [pattern='/configprops'], Ant [pattern='/jolokia/**'], Ant [pattern='/error']]], []
+2018-05-15 16:05:59,470  INFO DefaultSecurityFilterChain:43 - Creating filter chain: org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration$LazyEndpointPathRequestMatcher@3695c70d, []
+2018-05-15 16:05:59,470  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/css/**'], []
+2018-05-15 16:05:59,470  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/js/**'], []
+2018-05-15 16:05:59,471  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/images/**'], []
+2018-05-15 16:05:59,471  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/bootstrap/**'], []
+2018-05-15 16:05:59,471  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/bootstrap-datetimepicker/**'], []
+2018-05-15 16:05:59,471  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/bootstrap-fileinput/**'], []
+2018-05-15 16:05:59,471  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/bootstrap-lightbox/**'], []
+2018-05-15 16:05:59,471  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/bootstrap-modal/**'], []
+2018-05-15 16:05:59,472  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/bootstrap-select/**'], []
+2018-05-15 16:05:59,472  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/bootstrap-table/**'], []
+2018-05-15 16:05:59,472  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/category/**'], []
+2018-05-15 16:05:59,472  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/ckeditor/**'], []
+2018-05-15 16:05:59,472  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/echarts/**'], []
+2018-05-15 16:05:59,472  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/flyer/**'], []
+2018-05-15 16:05:59,473  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/fonts/**'], []
+2018-05-15 16:05:59,473  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/landing/**'], []
+2018-05-15 16:05:59,473  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/wishaccount/**'], []
+2018-05-15 16:05:59,473  INFO DefaultSecurityFilterChain:43 - Creating filter chain: Ant [pattern='/ztree/**'], []
+2018-05-15 16:05:59,647  INFO DefaultSecurityFilterChain:43 - Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31bf6d3f, org.springframework.security.web.context.SecurityContextPersistenceFilter@3b828d9c, com.aukey.security.CustomBeforeSecurityContextFilter@70a1851e, org.springframework.security.web.header.HeaderWriterFilter@1eeaf37d, org.springframework.security.web.csrf.CsrfFilter@55efd148, com.aukey.report.configuration.LoginConfigurer$3@1d59b405, org.springframework.security.web.authentication.logout.LogoutFilter@f603093, org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter@1b75f987, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6a0e1944, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@506cfd36, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72e9dda3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@51e9a943, org.springframework.security.web.session.SessionManagementFilter@8a9ba81, org.springframework.security.web.access.ExceptionTranslationFilter@42c4d391, com.aukey.security.MatchSecurityUserFilter@2d1c4f15, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7ef960ea]
+2018-05-15 16:05:59,695  INFO DefaultSecurityFilterChain:43 - Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/**']]], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11b122e, org.springframework.security.web.context.SecurityContextPersistenceFilter@16ac2451, org.springframework.security.web.header.HeaderWriterFilter@4e91ef8a, org.springframework.security.web.authentication.logout.LogoutFilter@504f6f21, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6e9b0dfd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72c99698, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@33e5caf4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a098ce4, org.springframework.security.web.session.SessionManagementFilter@1ee52dba, org.springframework.security.web.access.ExceptionTranslationFilter@22c8c93d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1b46d535]
+2018-05-15 16:06:00,680  INFO EndpointHandlerMapping:543 - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2018-05-15 16:06:00,682  INFO EndpointHandlerMapping:543 - Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2018-05-15 16:06:00,682  INFO EndpointHandlerMapping:543 - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,683  INFO EndpointHandlerMapping:543 - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2018-05-15 16:06:00,683  INFO EndpointHandlerMapping:543 - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,684  INFO EndpointHandlerMapping:543 - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,684  INFO EndpointHandlerMapping:543 - Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2018-05-15 16:06:00,684  INFO EndpointHandlerMapping:543 - Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,685  INFO EndpointHandlerMapping:543 - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,685  INFO EndpointHandlerMapping:543 - Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+2018-05-15 16:06:00,686  INFO EndpointHandlerMapping:543 - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,687  INFO EndpointHandlerMapping:543 - Mapped "{[/actuator || /actuator.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.hateoas.ResourceSupport org.springframework.boot.actuate.endpoint.mvc.HalJsonMvcEndpoint.links()
+2018-05-15 16:06:00,688  INFO EndpointHandlerMapping:543 - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2018-05-15 16:06:00,688  INFO EndpointHandlerMapping:543 - Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,689  INFO EndpointHandlerMapping:543 - Mapped "{[/jolokia/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.actuate.endpoint.mvc.JolokiaMvcEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2018-05-15 16:06:00,690  INFO EndpointHandlerMapping:543 - Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,java.security.Principal)
+2018-05-15 16:06:00,691  INFO EndpointHandlerMapping:543 - Mapped "{[/features || /features.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,691  INFO EndpointHandlerMapping:543 - Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+2018-05-15 16:06:00,691  INFO EndpointHandlerMapping:543 - Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+2018-05-15 16:06:00,692  INFO EndpointHandlerMapping:543 - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,692  INFO EndpointHandlerMapping:543 - Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2018-05-15 16:06:00,693  INFO EndpointHandlerMapping:543 - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,693  INFO EndpointHandlerMapping:543 - Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,694  INFO EndpointHandlerMapping:543 - Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2018-05-15 16:06:00,695  INFO EndpointHandlerMapping:543 - Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2018-05-15 16:06:00,696  INFO EndpointHandlerMapping:543 - Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2018-05-15 16:06:00,696  INFO EndpointHandlerMapping:543 - Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+2018-05-15 16:06:01,355  INFO FreeMarkerConfigurer:127 - ClassTemplateLoader for Spring macros added to FreeMarker configuration
+2018-05-15 16:06:02,395  INFO OptionalLiveReloadServer:58 - LiveReload server is running on port 35729
+2018-05-15 16:06:02,410  WARN RedisStarterDeprecationWarningAutoConfiguration:43 - spring-boot-starter-redis is deprecated as of Spring Boot 1.4, please migrate to spring-boot-starter-data-redis
+2018-05-15 16:06:02,511  WARN URLConfigurationSource:121 - No URLs will be polled as dynamic configuration sources.
+2018-05-15 16:06:02,512  INFO URLConfigurationSource:122 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2018-05-15 16:06:02,521  WARN URLConfigurationSource:121 - No URLs will be polled as dynamic configuration sources.
+2018-05-15 16:06:02,521  INFO URLConfigurationSource:122 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2018-05-15 16:06:02,845  INFO AnnotationMBeanExporter:431 - Registering beans for JMX exposure on startup
+2018-05-15 16:06:02,856  INFO AnnotationMBeanExporter:916 - Bean with name 'refreshScope' has been autodetected for JMX exposure
+2018-05-15 16:06:02,857  INFO AnnotationMBeanExporter:916 - Bean with name 'environmentManager' has been autodetected for JMX exposure
+2018-05-15 16:06:02,859  INFO AnnotationMBeanExporter:916 - Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2018-05-15 16:06:02,860  INFO AnnotationMBeanExporter:916 - Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+2018-05-15 16:06:02,860  INFO AnnotationMBeanExporter:916 - Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+2018-05-15 16:06:02,865  INFO AnnotationMBeanExporter:678 - Located managed bean 'environmentManager': registering with JMX server as MBean [aukey-report:name=environmentManager,type=EnvironmentManager]
+2018-05-15 16:06:02,880  INFO AnnotationMBeanExporter:678 - Located managed bean 'restartEndpoint': registering with JMX server as MBean [aukey-report:name=restartEndpoint,type=RestartEndpoint]
+2018-05-15 16:06:02,893  INFO AnnotationMBeanExporter:678 - Located managed bean 'refreshScope': registering with JMX server as MBean [aukey-report:name=refreshScope,type=RefreshScope]
+2018-05-15 16:06:02,909  INFO AnnotationMBeanExporter:678 - Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [aukey-report:name=configurationPropertiesRebinder,type=ConfigurationPropertiesRebinder]
+2018-05-15 16:06:02,916  INFO AnnotationMBeanExporter:678 - Located managed bean 'refreshEndpoint': registering with JMX server as MBean [aukey-report:name=refreshEndpoint,type=RefreshEndpoint]
+2018-05-15 16:06:02,918  INFO EndpointMBeanExporter:431 - Registering beans for JMX exposure on startup
+2018-05-15 16:06:03,287  INFO DefaultLifecycleProcessor:343 - Starting beans in phase 0
+2018-05-15 16:06:03,290  INFO EndpointMBeanExporter:678 - Located managed bean 'auditEventsEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=auditEventsEndpoint]
+2018-05-15 16:06:03,300  INFO EndpointMBeanExporter:678 - Located managed bean 'featuresEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=featuresEndpoint]
+2018-05-15 16:06:03,311  INFO EndpointMBeanExporter:678 - Located managed bean 'requestMappingEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=requestMappingEndpoint]
+2018-05-15 16:06:03,314  INFO EndpointMBeanExporter:678 - Located managed bean 'environmentEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=environmentEndpoint]
+2018-05-15 16:06:03,317  INFO EndpointMBeanExporter:678 - Located managed bean 'healthEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=healthEndpoint]
+2018-05-15 16:06:03,320  INFO EndpointMBeanExporter:678 - Located managed bean 'beansEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=beansEndpoint]
+2018-05-15 16:06:03,323  INFO EndpointMBeanExporter:678 - Located managed bean 'infoEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=infoEndpoint]
+2018-05-15 16:06:03,325  INFO EndpointMBeanExporter:678 - Located managed bean 'loggersEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=loggersEndpoint]
+2018-05-15 16:06:03,332  INFO EndpointMBeanExporter:678 - Located managed bean 'metricsEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=metricsEndpoint]
+2018-05-15 16:06:03,335  INFO EndpointMBeanExporter:678 - Located managed bean 'traceEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=traceEndpoint]
+2018-05-15 16:06:03,338  INFO EndpointMBeanExporter:678 - Located managed bean 'dumpEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=dumpEndpoint]
+2018-05-15 16:06:03,340  INFO EndpointMBeanExporter:678 - Located managed bean 'autoConfigurationReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=autoConfigurationReportEndpoint]
+2018-05-15 16:06:03,343  INFO EndpointMBeanExporter:678 - Located managed bean 'configurationPropertiesReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=configurationPropertiesReportEndpoint]
+2018-05-15 16:06:03,345  INFO EndpointMBeanExporter:678 - Located managed bean 'archaiusEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=archaiusEndpoint]
+2018-05-15 16:06:03,360  INFO ScheduledAnnotationBeanPostProcessor:260 - No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2018-05-15 16:06:03,442  INFO TomcatEmbeddedServletContainer:198 - Tomcat started on port(s): 8088 (http)
+2018-05-15 16:06:03,763  INFO Application:57 - Started Application in 39.661 seconds (JVM running for 40.497)
+2018-05-15 16:06:03,852  INFO ApplicationRegistrator:83 - Application registered itself as {managementUrl=http://report-bi.qa.aukeyit.com, healthUrl=http://report-bi.qa.aukeyit.com/health, serviceUrl=http://report-bi.qa.aukeyit.com, name=aukey-report, id=ea79980b, statusInfo={status=UP, timestamp=1526371567072}}
+2018-05-15 16:08:01,199  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:10:01,554  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:12:00,814  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:14:00,800  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:16:00,810  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:18:01,553  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:20:01,271  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:22:00,790  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:24:00,759  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:26:00,759  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:28:01,189  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:30:01,521  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:32:01,142  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:34:01,179  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:36:00,804  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:38:01,805  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:40:01,135  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:42:00,764  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:44:00,761  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:46:00,763  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:48:01,078  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:50:01,546  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 16:52:00,753  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:54:00,747  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:56:00,745  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 16:58:00,783  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:00:01,383  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:02:01,018  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:04:01,204  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:06:01,151  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:08:01,227  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:10:01,171  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:12:01,248  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:14:00,754  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:16:01,280  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:18:01,057  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:20:01,137  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:22:01,826  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:24:01,068  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:26:00,758  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:28:00,741  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:30:01,227  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:32:00,790  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:34:00,937  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:36:01,053  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:38:01,363  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:40:00,771  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:42:00,903  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:44:01,186  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:46:00,774  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:48:01,248  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:50:00,932  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:52:00,794  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:54:01,213  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 17:56:00,782  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 17:58:00,817  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:00:00,759  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:02:01,162  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 18:04:01,539  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 18:06:00,767  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:08:00,769  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:10:01,165  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 18:12:00,771  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:14:00,830  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:16:00,838  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:18:00,782  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:20:00,805  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:22:00,793  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:24:00,817  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:26:00,986  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:28:00,773  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:30:00,784  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:32:00,800  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:34:00,806  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:36:00,777  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:38:00,781  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:40:00,775  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:42:00,785  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:44:00,995  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:46:00,774  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:48:01,188  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 18:50:00,840  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:52:00,806  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:54:00,782  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:56:00,807  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 18:58:00,781  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:00:00,778  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:02:00,796  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:04:01,187  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 19:06:00,766  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:08:01,183  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 19:10:00,772  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:12:00,879  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:14:00,981  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:16:00,778  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:18:01,254  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 19:20:00,788  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:22:00,784  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:24:00,769  INFO PurchaseTask:26 - 计算开票数量及状态耗时0秒
+2018-05-15 19:26:01,094  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 19:28:01,202  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒
+2018-05-15 19:30:01,101  INFO PurchaseTask:26 - 计算开票数量及状态耗时1秒

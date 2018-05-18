@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml" xmlns:th="://.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>海外调拨数据</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <head th:include="decorators/tags/main" />
+    <head th:include="decorators/tags/menuBaiyi" />
+    <style>
+        /*.main-container{*/
+            /*padding:0 22px;*/
+            /*margin:100px 0 0 0;*/
+        /*}*/
+        .fixed-table-toolbar .columns {
+            top: 55px!important;
+        }
+    </style>
+</head>
+<body class="overflow-hidden" >
+<div class="wrapper no-left">
+    <ul class="breadcrumb">
+        <li><span class="primary-font"><i class="icon-home"></i></span>海外调拨数据</li>
+    </ul>
+	<div class="preload main-container">
+		<div class="form-inline no-margin" >
+			<button type="button" class="btn btn-blue marginTB-xs" id="importExcelBtn" onclick="importExcel()">导入</button>
+			<button type="button" class="btn btn-blue marginTB-xs" id="exportExcelBtn" onclick="exportExcel()">导出</button>
+				<form class="form-inline no-margin" name="uploadForm" id="uploadForm" method="post"
+							  enctype="multipart/form-data">
+							<input type="file" onchange="importDelivery()" name="file" id="file" class="timage"  accept=".xls,.xlsx" />
+						</form>		
+			<input type="hidden"  th:value="${result}" id="res"/>
+			<div class="form-inline no-margin" id="queryForm">
+			 <div class="search-form-div">
+                <div class="search_l">
+                	<div class="form-group">SKU
+                       <input type="text" id="sku" name="sku" class="form-control" placeholder="输入sku"/>
+                     </div>
+                     <div class="form-group" style="margin:5px 0">出库仓
+                         <select class="selectpicker show-tick form-control" multiple="multiple"
+                                 id="wareHouseId" data-live-search="false" name = 'payType'>
+                             <option value='-1' selected='true'>全部</option>
+                             <option th:each="stock :${inventory}"
+                                     th:value="${stock.stock_id}"
+                                     th:text="${stock.warehouse_name}"></option>
+                         </select>
+                     </div>
+                </div>
+                <div class="search_r">
+                            <button type="button" class="btn btn-success marginTB-xs" onclick="searchResult()">搜索</button>
+                            <img class="resetbutton" src="/images/icon_Advanced-search.png" onclick="searchReset()" />
+                </div>
+             </div>
+             </div>
+		</div>
+	 <div class="smart-widget-inner product_info">
+	 	<table id="table01"></table>
+	 </div>
+<!-- 引入页脚 -->
+    <head th:include="decorators/tags/footer_mini"/>
+</div>
+</div>
+<script th:src="@{'/js/jquery.form.js?v='+${version}}"></script>
+<script th:src="@{'/js/TransferOversea.js?v='+${version}}"></script>
+</body>
+</html>

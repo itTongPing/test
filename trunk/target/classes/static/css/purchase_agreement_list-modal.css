@@ -1,0 +1,711 @@
+*, ul, li, body {
+    font-family: "Microsoft YaHei";
+    margin: 0;
+    padding: 0;
+}
+body, html {
+    font-size: 14px;
+}
+table {
+	border-spacing: 0;
+	border-collapse: collapse
+}
+
+td,th {
+	padding: 0
+}
+.left{
+    float: left!important;
+}
+.right{
+    float: right!important;
+}
+.modal-open {
+	overflow: hidden
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1050;
+	display: none;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	outline: 0
+}
+
+.modal.fade .modal-dialog {
+	-webkit-transition: -webkit-transform .3s ease-out;
+	-o-transition: -o-transform .3s ease-out;
+	transition: transform .3s ease-out;
+	-webkit-transform: translate3d(0, -25%, 0);
+	-o-transform: translate3d(0, -25%, 0);
+	transform: translate3d(0, -25%, 0)
+}
+
+.modal.in .modal-dialog {
+	-webkit-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0)
+}
+
+.modal-open .modal {
+	overflow-x: hidden;
+	overflow-y: auto
+}
+
+.modal-dialog {
+	position: relative;
+	width: auto;
+	margin: 10px
+}
+
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #999;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 6px;
+	outline: 0;
+	-webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+	box-shadow: 0 3px 9px rgba(0, 0, 0, .5)
+}
+
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	background-color: #000
+}
+
+.modal-backdrop.fade {
+	filter: alpha(opacity = 0);
+	opacity: 0
+}
+
+.modal-backdrop.in {
+	filter: alpha(opacity = 50);
+	opacity: .5
+}
+
+.modal-header {
+	min-height: 16.43px;
+	padding: 15px;
+/* 	border-bottom: 1px solid #e5e5e5 */
+}
+
+.modal-header .close {
+	margin-top: -2px
+}
+
+.modal-title {
+	margin: 0;
+	line-height: 1.42857143
+}
+
+.modal-body {
+	position: relative;
+	padding: 15px
+}
+
+.modal-footer {
+	padding: 15px;
+	text-align: right;
+	border-top: 1px solid #e5e5e5
+}
+
+.modal-footer .btn+.btn {
+	margin-bottom: 0;
+	margin-left: 5px
+}
+
+.modal-footer .btn-group .btn+.btn {
+	margin-left: -1px
+}
+
+.modal-footer .btn-block+.btn-block {
+	margin-left: 0
+}
+
+.modal-scrollbar-measure {
+	position: absolute;
+	top: -9999px;
+	width: 50px;
+	height: 50px;
+	overflow: scroll
+}
+
+@media ( min-width :768px) {
+	.modal-dialog {
+		width: 600px;
+		margin: 30px auto
+	}
+	.modal-content {
+		-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, .5)
+	}
+	.modal-sm {
+		width: 300px
+	}
+}
+
+@media ( min-width :992px) {
+	.modal-lg {
+		width: 900px
+	}
+}
+.clearfix:before,.clearfix:after,.dl-horizontal dd:before,.dl-horizontal dd:after,.container:before,.container:after,.container-fluid:before,.container-fluid:after,.row:before,.row:after,.form-horizontal .form-group:before,.form-horizontal .form-group:after,.btn-toolbar:before,.btn-toolbar:after,.btn-group-vertical>.btn-group:before,.btn-group-vertical>.btn-group:after,.nav:before,.nav:after,.navbar:before,.navbar:after,.navbar-header:before,.navbar-header:after,.navbar-collapse:before,.navbar-collapse:after,.pager:before,.pager:after,.panel-body:before,.panel-body:after,.modal-footer:before,.modal-footer:after
+{
+	display: table;
+	content: " "
+}
+
+.clearfix:after,.dl-horizontal dd:after,.container:after,.container-fluid:after,.row:after,.form-horizontal .form-group:after,.btn-toolbar:after,.btn-group-vertical>.btn-group:after,.nav:after,.navbar:after,.navbar-header:after,.navbar-collapse:after,.pager:after,.panel-body:after,.modal-footer:after
+{
+	clear: both
+}
+.modal-body{
+	/* padding:0px 24px 14px 24px; */
+	padding:15px 24px;
+}
+.modal-body.max-hei{
+	max-height: 600px;
+    overflow-y: auto;
+}
+.modal .pure-tex{
+	padding:10px 0;
+}
+.modal .form-group{
+	margin-bottom:0;
+}
+.modal .smart-widget-body{
+	margin-left: 0;
+    margin-right: 0;
+    padding:14px 24px;
+}
+.modal-header{
+	padding:14px 24px;
+	background:#e8ecef;
+	height: 50px;
+	border-radius: 4px 4px 0 0;
+/* 	border-bottom: 1px solid #d2d2d2; */
+}
+.modal-footer{
+	height: 76px;
+	padding: 20px 24px;
+	border-top: 1px solid #d2d2d2;
+	clear:both;
+	background: #e8ecef;
+	border-radius: 0px 0px 4px 4px;
+}
+
+.modal-footer.spe button {
+    width:100%;
+    margin:0;
+}
+.modal-title, .modal-footer {
+    text-align: center;
+	font-size:16px;
+}
+.modal label{
+	text-align:left;
+	float: left;
+}
+.modal .smart-widget-inner{
+	margin-bottom:0;
+}
+
+.modal .fun-btn{
+	padding:7px 24px 7px 24px;
+	margin-left:0;
+	margin-right:0;
+}
+.modal .search-form-div{
+	padding: 8px 0!important;
+    margin-top: -15px;
+}
+.modal .search-form-div .form-control, .search-form-div .tn-group{
+	margin-left:0!important;
+}
+/* mid-modal */
+.mid-modal{
+	top: 200px;
+	max-width:500px;
+}
+.mid-modal.shipT .radio input[type=radio]{
+	position: inherit;
+}
+
+@media (max-width: 1280px){
+	.mid-modal{top:100px;}
+}
+
+/* modal-one----add/edit */
+.modal-one .modal-body{
+	padding:24px;
+}
+.modal-one .form-group{
+	margin-bottom:26px;
+	line-height: 36px;
+}
+.modal-one .form-group:last-of-type{
+	margin-bottom:0px;
+}
+.modal-one input[type=text]{
+	margin-bottom: 0px;
+    margin-top: 0px;
+}
+.modal-one .form-horizontal .control-label{
+	padding-top:0;
+}
+.modal-one label{
+	text-align: right;
+}
+/*  */
+.modal-one .fixed-table-pagination{
+	margin-left: inherit;
+}
+
+/* modal-three-----msg */
+.modal-three .modal-header{
+	background: #2cc3a9;
+	color:#fff;
+	height: 40px;
+    padding: 10px 24px;
+}
+.modal-three .modal-body{
+	padding:16px;
+}
+.modal-three .modal-title{
+	font-size: 14px;
+}
+.modal-dialog .modal-content.modal-three { 
+    box-shadow: rgb(204, 204, 204) 4px 9px 8px;
+    border: none;
+}
+ 
+/* modal-four---- */
+.modal-four .sele-div{
+	min-height:86px;
+	line-height: 86px;
+}
+.modal-four .radio{
+	margin-right: 0px;
+}
+.modal-four .radio input[type=radio]{
+	position: inherit;
+	margin-left:0;
+}
+.modal-four .radio label,.modal .checkbox label{
+	padding-left: 0px;
+	padding-right: 20px;
+	font-size: 16px;
+}
+.modal-four .form-group{
+	margin-top:10px;
+	margin-bottom:10px;
+	line-height: 36px;
+}
+.modal-four label{
+	font-weight: 100;
+	margin-right:14px;
+}
+.modal-four .form-control{
+	width:465px;
+}
+
+/* ---shop-sel------ */
+.modal .modal-dialog.shop-sel{
+	width:770px;
+}
+.modal .shop-sel .search-form-div .btn,.class_sel .search-form-div .btn{
+	margin:6px 0;
+}
+.modal .shop-sel .search-form-div input{
+	width: 614px;
+}
+.modal .class_sel .search-form-div input{
+	width: 444px;
+}
+.modal .modal-dialog.shop-sel .fixed-table-body {
+    overflow-y: auto;
+    max-height: 480px;
+}
+.modal .shop-sel label{
+	font-weight: 200;
+}
+.modal .shop-sel .bootstrap-table label{
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+    margin-bottom: 0px;
+    height: 32px;
+    line-height: 32px;
+    font-weight: 200;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+.modal .shop-sel label span{
+	border-right: 1px solid #eee;
+    height: 32px;
+    width:38px;
+    display: inline-block;
+    padding-left:12px;
+    margin-right: 12px;
+}
+.modal .shop-sel .mod-sel-num{
+	border: 1.5px solid #d2d2d2;
+	height: 40px;
+	border-radius: 4px 4px 0 0;
+	border-bottom: none;
+}
+.modal .shop-sel .fixed-table-container{
+	border-radius: 0px 0px 4px 4px;
+}
+.modal .shop-sel .mod-sel-num label{
+	margin-bottom: 0px;
+    line-height: 40px;
+}
+.modal .shop-sel .mod-sel-num label:first-child{
+	margin-right: 28px;
+}
+.modal .shop-sel .mod-sel-num label span{
+	margin-right: 0px;
+	border-right:none;
+}
+.contractModal .modal-header {
+    border-bottom: none;
+    height: 100px;
+    lint-height: 100px;
+    background: #fff;
+}
+
+.contractModal .modal-header .modal-title {
+    font-size: 24px;
+    line-height: 78px;
+}
+#assign_pocess .modal-body {
+    padding: 30px 24px;
+}
+
+#assign_pocess .assign_pocess_con img {
+    width: 24px;
+    margin-right: 16px;
+}
+
+#assign_pocess .assign_pocess_con li {
+    min-height: 60px;
+    padding: 0 20px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    line-height: 60px;
+}
+
+#assign_pocess .assign_pocess_con li:last-child {
+    margin-bottom: 0;
+}
+
+#assign_pocess .assign_pocess_con span.left {
+    font-size: 16px;
+}
+
+#assign_pocess .assign_pocess_con span.right {
+    color: #ccc;
+}
+
+#assign_pocess .assign_pocess_con span.right p {
+    color: #666;
+}
+
+#assign_pocess .assign_pocess_con li:last-child span {
+    color: #666;
+}
+
+.modal-lg.contractModal {
+    width: 952px;
+}
+
+
+/* contract */
+
+.contractModal .modal-body {
+    max-height: 700px;
+    overflow-y: auto;
+    padding: 15px 24px 0 24px;
+}
+
+@media (max-width: 1280px) {
+    .contractModal .modal-body {
+        max-height: 500px;
+    }
+}
+
+.modal#contractTemplate .form-group {
+    display: table;
+    width: 100%;
+}
+
+.contract {
+    margin-bottom: 20px;
+}
+
+.contract:last-child {
+    margin-bottom: 0px;
+}
+
+.contract tbody tr {
+    line-height: 30px;
+}
+
+.contract tbody th {
+    text-align: left;
+    width: 112px;
+    padding-left: 10px;
+    border-right: 1px solid #eee;
+}
+
+.contract tbody td {
+    text-align: left;
+}
+
+.contractModal h5 {
+    font-weight: 600;
+    margin: 30px 0 14px;
+    font-size: 16px;
+}
+
+.table.ht tr td {
+    line-height: 0;
+}
+
+.table.ht input[type=text] {
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+}
+#agreementHeaderTwo{
+	width:100%;
+}
+
+#agreementHeaderTwo .contract.two tbody td {
+    text-align: center;
+}
+
+#agreementHeader3 {
+    margin-top: 30px;
+}
+
+#agreementHeader3 table {
+    width: 49%;
+    margin-bottom: 20px;
+}
+
+#agreementHeader3 table tr {
+    border-bottom: 1px solid #eee;
+}
+
+#agreementHeader3 table tr:last-child {
+    border-bottom: none;
+}
+
+#agreementHeader3 table thead tr th {
+    height: 40px;
+}
+
+#agreementHeader3 table tr td {
+    padding: 0 14px;
+    height: 32px;
+}
+
+.contractModal p {
+    margin: 0;
+    line-height: 1.5;
+    color: #666;
+}
+
+.contractModal .modal-header {
+    border-bottom: none;
+    height: 100px;
+    lint-height: 100px;
+    background: #fff;
+}
+
+.contractModal .modal-header .modal-title {
+    font-size: 24px;
+    line-height: 78px;
+}
+
+.four-div {
+    height: 48px;
+    border: 1px solid #d2d2d2;
+    padding: 0 20px;
+    border-radius: 4px;
+}
+
+.four-div P {
+    line-height: 48px;
+}
+
+.contract.two tbody td {
+    border-right: 1px solid #d2d2d2;
+    text-align: left;
+}
+
+.contract.one.two thead th {
+    border-right: 1px solid #d2d2d2;
+    height: 40px;
+}
+
+.contract.one.two tbody td {
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+
+.contract.two {
+    border: 1px solid #ccc;
+    width:100%;
+}
+
+.contract.two thead {
+    border-bottom: 1px solid #ccc;
+    line-height: 28px;
+}
+
+.contract.two thead th:nth-child(1) {
+    border-right: 1px solid #ccc;
+}
+
+.total {
+    font-weight: 600;
+}
+
+.delivery {
+    color: #f27068;
+    width: 130px;
+    font-size: 13px;
+    display: inline-block;
+    text-align: center;
+}
+
+.delivery.two {
+    width: 50px;
+}
+
+.contract.two tr.near td {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.contract.two tr.near td span {
+    padding: 0 20px;
+}
+
+table.newVision {
+    border: 1px solid #cdcdcd;
+    height: 80px;
+    width:100%;
+}
+
+table.newVision.two {
+    height: 60px;
+    width:100%;
+}
+
+table.newVision h6 {
+    margin: 0 0 8px;
+    color: #333;
+    font-size: 16px;
+}
+
+table.newVision p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+table.newVision b {
+    color: #333;
+}
+
+table.newVision tr td {
+    border-bottom: 1px solid #cdcdcd;
+    border-right: 1px solid #cdcdcd;
+    height: 40px;
+    padding: 0 14px;
+}
+
+table.newVision tr td.tit {
+    text-align: center;
+    width: 126px;
+}
+
+table.newVision tr td.tit span {
+    color: #f27068;
+}
+.modal .relevant-documents-dialog {
+            width: 660px;
+        }
+        
+        .modal .relevant-documents-content {
+            width: 660px;
+        }
+        
+        .modal .relevant-documents-body {
+            padding: 0px;
+        }
+        
+        .modal .modal-dialog .modal-body {
+            height: 360px;
+        }
+        
+        .modal .modal-dialog .modal-body {
+            position: relative;
+        }
+        
+        .modal .modal-dialog .modal-body-left ul {
+            position: absolute;
+            top: 30px;
+        }
+        
+        .modal .modal-dialog .modal-body-right {
+            position: absolute;
+            top: 27px;
+            left: 45px;
+            width: 615px;
+            height: 333px;
+        }
+
+table td{
+	font-size:13px;
+	color:#666;
+}
+
+*, ul, li, body {
+    font-family: "Microsoft YaHei";
+    margin: 0;
+    padding: 0;
+    font-size:13px;
+}
+h5{
+	font-weight: 600;
+    margin: 30px 0 14px;
+    font-size: 16px;
+}
+/* 隐藏关闭按钮 */
+.modal-header .close{
+	display:none;
+}
+/* 打印页面不显示导出、打印按钮 */
+.modal-footer button{
+	display:none;
+}

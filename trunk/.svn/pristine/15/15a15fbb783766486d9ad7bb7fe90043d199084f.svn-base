@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aukey.report.mapper.FnskuAndSkuMatchingMapper">
+
+	<select id="selectAllList" resultType="com.aukey.report.domain.FnskuAndSkuMatching" parameterType="map">
+	SELECT 
+		`fnsku_sku_matching_id` id,
+		`from_warehouse_name` fromWarehouseName,
+		`to_warehouse_name` toWarehouseName,
+		`sku`  sku,
+		`sku_name` skuName ,
+		`from_wssku_box` fromWsskuBox,
+		`goods_weight` goodsWeight,
+		`goods_package_length` goodsPackageLength,
+		`goods_package_width` goodsPackageWidth,
+		`goods_package_height` goodsPackageHeight,
+		`goods_package_volume` goodsPackageVolume,
+		`box_count` boxCount,
+		`box_weight` boxWeight,
+		`box_length` boxLength,
+		`box_width` boxWidth,
+		`box_height` boxHeight,
+		`box_volume` boxVolume,
+		`fnsku` fnsku,
+		`tax_unit_price` taxUnitPrice,
+		`sale_department` saleDepartment
+	FROM aukey_report.fnsku_sku_matching fsm	
+	<where>
+		<if test="ids!=null and ids.size!=0">
+	    	and fsm.fnsku_sku_matching_id in
+	    	<foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+	    		#{item}
+	    	</foreach>
+	    </if>
+	    <if test="skuList!=null and skuList.size!=0">
+    	and fsm.sku in
+    	<foreach collection="skuList" index="index" item="item" open="(" close=")" separator=",">
+    		#{item}
+    	</foreach>
+	    </if>
+	    <if test="fromWsskuBoxList!=null and fromWsskuBoxList.size!=0">
+	    	and fsm.from_wssku_box in
+	    	<foreach collection="fromWsskuBoxList" index="index" item="item" open="(" close=")" separator=",">
+	    		#{item}
+	    	</foreach>
+	    </if>
+	    <if test="fnskuList!=null and fnskuList.size!=0">
+	    	and fsm.fnsku in
+	    	<foreach collection="fnskuList" index="index" item="item" open="(" close=")" separator=",">
+	    		#{item}
+	    	</foreach>
+	    </if>
+    </where>
+	<if test="pageSize!=null and pageNumber!=null">
+    	limit #{pageNumber},#{pageSize}
+    </if>		
+	</select>
+  
+	<select id="setAllTotal" resultType="java.lang.Integer" parameterType="map">
+	SELECT 
+		count(1)
+	FROM aukey_report.fnsku_sku_matching fsm
+	<where>
+	    <if test="skuList!=null and skuList.size!=0">
+    	and fsm.sku in
+    	<foreach collection="skuList" index="index" item="item" open="(" close=")" separator=",">
+    		#{item}
+    	</foreach>
+	    </if>
+	    <if test="fromWsskuBoxList!=null and fromWsskuBoxList.size!=0">
+	    	and fsm.from_wssku_box in
+	    	<foreach collection="fromWsskuBoxList" index="index" item="item" open="(" close=")" separator=",">
+	    		#{item}
+	    	</foreach>
+	    </if>
+	    <if test="fnskuList!=null and fnskuList.size!=0">
+	    	and fsm.fnsku in
+	    	<foreach collection="fnskuList" index="index" item="item" open="(" close=")" separator=",">
+	    		#{item}
+	    	</foreach>
+	    </if>
+    </where>
+	</select>  
+</mapper>

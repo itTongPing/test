@@ -1,0 +1,5 @@
+DROP EVENT IF EXISTS `call_sync_storage_report`;
+DELIMITER ;;
+CREATE  EVENT `call_sync_storage_report` ON SCHEDULE EVERY 10 MINUTE STARTS '2017-09-14 09:40:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL sync_storage_report
+;;
+DELIMITER ;

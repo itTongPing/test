@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aukey.report.mapper.WarehouseAssessmentReportMapper">
+	 
+  <resultMap id="BaseResultMap" type="com.aukey.report.domain.WarehouseAssessmentReport">
+   	<id column="id"  property="id" />
+    <result column="quality_control_id"  property="quality_control_id" />
+    <result column="sku_code"  property="sku_code" />
+    <result column="create_user"  property="create_user" />
+    <result column="inspector_name"  property="inspector_name" />
+    <result column="create_date"  property="create_date" />
+    <result column="inspector_result"  property="inspector_result" />
+    <result column="purchase_quantity"  property="purchase_quantity" />
+    <result column="qualified_quantity"  property="qualified_quantity" />
+    <result column="purchase_no"  property="purchase_no" />
+    <result column="buyer_id"  property="buyer_id" />
+    <result column="leader_create_time"  property="leader_create_time" />
+    <result column="storage_number" property="storage_number" />
+    <result column="storage_user_id"  property="storage_user_id" />
+    <result column="storage_user_name"  property="storage_user_name" />
+    <result column="storage_create_date"  property="storage_create_date" />
+    <result column="stock_name"  property="stock_name" />
+  </resultMap>
+  
+  <select id="selectList" parameterType="map" resultMap="BaseResultMap">
+  	select 
+  		  id,
+	   quality_control_id,
+	   sku_code,
+	   create_user,
+	   inspector_name,
+	  create_date,
+	   inspector_result,
+	  purchase_quantity ,
+	  qualified_quantity ,
+	   purchase_no,
+	   buyer_id,
+	   sale_name,
+	 leader_create_time ,
+	   storage_number ,
+	   storage_user_id,
+	    storage_user_name,
+	  storage_create_date
+  	from aukey_report.warehouse_assessment_report s 
+  	 where 1=1
+  	 <if test='skucodes != null and skucodes.size() > 0 '>
+		and	 s.sku_code IN
+			<foreach collection="skucodes" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+  	 
+  	<if test='createDateStart != null and createDateStart != "" '>
+		and s.create_date &gt;= '${createDateStart}'
+	</if>
+	<if test='createDateEnd != null and createDateEnd != "" '>
+		and s.create_date &lt;= '${createDateEnd}'
+	</if>
+	
+	<if test='inspectorNames != null and inspectorNames.size() > 0 '>
+		and	 s.inspector_name IN
+			<foreach collection="inspectorNames" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+	 
+	 
+	 <if test='inspector_result != null and inspector_result != "" '>
+		and	 s.inspector_result = #{inspector_result} 
+	 </if>
+	 
+	 <if test='saleNames != null and saleNames.size() > 0 '>
+		and	 s.sale_name IN
+			<foreach collection="saleNames" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+	 
+  	 
+  	 <if test='leaderCreateTimeStart != null and leaderCreateTimeStart != "" '>
+		and s.leader_create_time &gt;= '${leaderCreateTimeStart}'
+	</if>
+	<if test='leaderCreateTimeEnd != null and leaderCreateTimeEnd != "" '>
+		and s.leader_create_time &lt;= '${leaderCreateTimeEnd}'
+	</if>
+	
+	<if test='storageCreateDateStart != null and storageCreateDateStart != "" '>
+		and s.storage_create_date &gt;= '${storageCreateDateStart}'
+	</if>
+	<if test='storageCreateDateEnd != null and storageCreateDateEnd != "" '>
+		and s.storage_create_date &lt;= '${storageCreateDateEnd}'
+	</if>
+  	 
+  	 
+  	 
+  	 <if test='storageUserNames != null and storageUserNames.size() > 0 '>
+		and	 s.storage_user_name IN
+			<foreach collection="storageUserNames" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+  	 
+  	 
+  	 <if test='purchaseOrders != null and purchaseOrders.length > 0 '>
+		and s.purchase_no IN
+		<foreach collection="purchaseOrders" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='storageNumbers != null and storageNumbers.length > 0 '>
+		and s.storage_number IN
+		<foreach collection="storageNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='qualityInspectionNumbers != null and qualityInspectionNumbers.length > 0 '>
+		and s.quality_control_id IN
+		<foreach collection="qualityInspectionNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	
+	<if test='skucode != null and skucode != "" '>
+		and	 s.sku_code like CONCAT('%','${skucode}','%' )
+	</if>
+	
+	<if test='checkIds != null and checkIds.size > 0 '>
+			and s.id IN
+			<foreach collection="checkIds" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='purchaseOrder != null and purchaseOrder != "" '>
+		  and  (s.purchase_no like CONCAT('%','${purchaseOrder}','%' ) 
+		  		or s.storage_number like CONCAT('%','${purchaseOrder}','%' )
+		  		or s.quality_control_id like CONCAT('%','${purchaseOrder}','%' ))
+	</if>
+  	 
+  	 
+  	 
+  	 
+  	 
+	<if test="page !=null and limit != null">
+		limit #{page},#{limit}
+	</if>
+  </select>
+  
+  
+  
+  <select id="selectCount" parameterType="map" resultType="int">
+  	select 
+  		count(1)
+  	from aukey_report.warehouse_assessment_report s 
+  	where 1=1
+  	
+  	<if test='skucodes != null and skucodes.size() > 0 '>
+		and	 s.sku_code IN
+			<foreach collection="skucodes" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+  	 
+  	<if test='createDateStart != null and createDateStart != "" '>
+		and s.create_date &gt;= '${createDateStart}'
+	</if>
+	<if test='createDateEnd != null and createDateEnd != "" '>
+		and s.create_date &lt;= '${createDateEnd}'
+	</if>
+	
+	<if test='inspectorNames != null and inspectorNames.size() > 0 '>
+		and	 s.inspector_name IN
+			<foreach collection="inspectorNames" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+	 
+	 
+	 <if test='inspector_result != null and inspector_result != "" '>
+		and	 s.inspector_result = #{inspector_result} 
+	 </if>
+	 
+	 <if test='saleNames != null and saleNames.size() > 0 '>
+		and	 s.sale_name IN
+			<foreach collection="saleNames" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+	 
+  	 
+  	 <if test='leaderCreateTimeStart != null and leaderCreateTimeStart != "" '>
+		and s.leader_create_time &gt;= '${leaderCreateTimeStart}'
+	</if>
+	<if test='leaderCreateTimeEnd != null and leaderCreateTimeEnd != "" '>
+		and s.leader_create_time &lt;= '${leaderCreateTimeEnd}'
+	</if>
+	
+	<if test='storageCreateDateStart != null and storageCreateDateStart != "" '>
+		and s.storage_create_date &gt;= '${storageCreateDateStart}'
+	</if>
+	<if test='storageCreateDateEnd != null and storageCreateDateEnd != "" '>
+		and s.storage_create_date &lt;= '${storageCreateDateEnd}'
+	</if>
+  	 
+  	 
+  	 
+  	 <if test='storageUserNames != null and storageUserNames.size() > 0 '>
+		and	 s.storage_user_name IN
+			<foreach collection="storageUserNames" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	 </if>
+  	 
+  	 
+  	 <if test='purchaseOrders != null and purchaseOrders.length > 0 '>
+		and s.purchase_no IN
+		<foreach collection="purchaseOrders" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='storageNumbers != null and storageNumbers.length > 0 '>
+		and s.storage_number IN
+		<foreach collection="storageNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='qualityInspectionNumbers != null and qualityInspectionNumbers.length > 0 '>
+		and s.quality_control_id IN
+		<foreach collection="qualityInspectionNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	
+	<if test='skucode != null and skucode != "" '>
+		and	 s.sku_code like CONCAT('%','${skucode}','%' )
+	</if>
+	
+	<if test='checkIds != null and checkIds.size > 0 '>
+			and s.id IN
+			<foreach collection="checkIds" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='purchaseOrder != null and purchaseOrder != "" '>
+		  and  (s.purchase_no like CONCAT('%','${purchaseOrder}','%' ) 
+		  		or s.storage_number like CONCAT('%','${purchaseOrder}','%' )
+		  		or s.quality_control_id like CONCAT('%','${purchaseOrder}','%' ))
+	</if>
+  </select>
+  
+  
+  
+</mapper>

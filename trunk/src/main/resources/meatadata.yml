@@ -1,0 +1,272 @@
+- !com.aukey.security.meata.Meatadata
+   name: 库存查询
+   code: report_reportinventory_index
+   method: get
+   url: /report/inventory/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 查询
+      code: report_reportinventory_search
+      method: get
+      url: /report/inventory/search
+   - !com.aukey.security.meata.Meatadata
+      name: 导出excel
+      code: report_reportinventory_export
+      method: get
+      url: /report/inventory/export
+   - !com.aukey.security.meata.Meatadata
+      name: 金额体积查看
+      code: report_advance_view
+      method: get
+      url: '#'
+- !com.aukey.security.meata.Meatadata
+   name: 采购入库查询
+   code: report_reportpurchase_index
+   method: get
+   url: /report/purchase/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 查询
+      code: report_reportpurchase_search
+      method: get
+      url: /report/purchase/search
+   - !com.aukey.security.meata.Meatadata
+      name: 导出excel
+      code: report_reportpurchase_export
+      method: get
+      url: /report/purchase/export
+- !com.aukey.security.meata.Meatadata
+   name: 采购报关管理
+   code: report_reportdeclare_index
+   method: get
+   url: /report/declare/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 查询
+      code: report_reportdeclare_search
+      method: get
+      url: /report/declare/search
+   - !com.aukey.security.meata.Meatadata
+      name: 导出excel
+      code: report_reportdeclare_export
+      method: get
+      url: /report/declare/export
+   - !com.aukey.security.meata.Meatadata
+      name: 发票明细
+      code: report_reportdeclare_detail
+      method: get
+      url: /report/declare/detail
+- !com.aukey.security.meata.Meatadata
+   name: 商品收发明细
+   code: report_reportgood_index
+   method: get
+   url: /report/good/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出excel
+      code: report_reportgood_export
+      method: get
+      url: /report/good/export
+   - !com.aukey.security.meata.Meatadata
+      name: 金额查看
+      code: report_reportgood_money_view
+      method: get
+      url: '#'
+   - !com.aukey.security.meata.Meatadata
+      name: 往来单位查看
+      code: report_reportgood_intercourse_view
+      method: get
+      url: '#'
+      
+- !com.aukey.security.meata.Meatadata
+   name: 采购执行汇总
+   code: report_reportpurchaseexe_index
+   method: get
+   url: /report/purchase/exe/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 查询
+      code: report_reportpurchaseexe_search
+      method: get
+      url: /report/purchase/exe/search
+   - !com.aukey.security.meata.Meatadata
+      name: 导出excel
+      code: report_reportpurchaseexe_export
+      method: get
+      url: /report/purchase/exe/export      
+- !com.aukey.security.meata.Meatadata
+   name: 库龄查询
+   code: aukey-report_reportstockage_index
+   method: get
+   url: /report/stock/age/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey-report_reportstockage_export
+      method: get
+      url: /report/stock/age/export     
+- !com.aukey.security.meata.Meatadata
+   name: 调拨明细
+   code: aukey-report_reporttransfer_index
+   method: get
+   url: /report/transfer/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey-report_reporttransfer_export
+      method: get
+      url: /report/transfer/export
+
+- !com.aukey.security.meata.Meatadata
+   name: 入库管理
+   code: aukey-report_storage_index
+   method: get
+   url: /storageReport/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey-report_storage_export
+      method: get
+      url: /storageReport/exportStorageList
+   - !com.aukey.security.meata.Meatadata
+      name: 供应商查看
+      code: aukey-report_storage_supplier
+      method: get
+      url: '#'
+   - !com.aukey.security.meata.Meatadata
+      name: 单价查看
+      code: aukey-report_storage_price
+      method: get
+      url: '#'
+   - !com.aukey.security.meata.Meatadata
+      name: 币别查看
+      code: aukey-report_storage_currency
+      method: get
+      url: '#'
+- !com.aukey.security.meata.Meatadata
+   name: 入库考核
+   code: aukey_warehouse_assessment_index
+   method: get
+   url: /report/warehouseAssessmentReport/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey_warehouse_assessment_export
+      method: get
+      url: /report/warehouseAssessmentReport/exportStorageList
+- !com.aukey.security.meata.Meatadata
+   name: 质检考核
+   code: aukey_quality_inspection_index
+   method: get
+   url: /report/qualityInspectionReport/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey_quality_inspection_export
+      method: get
+      url: /report/qualityInspectionReport/exportExcel
+- !com.aukey.security.meata.Meatadata
+   name: 签收考核
+   code: aukey_signup_qualityinspection_index
+   method: get
+   url: /report/signupQualityInspection/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey_signup_qualityinspection_export
+      method: get
+      url: /report/signupQualityInspection/exportExcel
+      
+- !com.aukey.security.meata.Meatadata
+   name: 采购预警报表
+   code: aukey-report_purchaseWarn_index
+   method: get
+   url: /report/PurchaseWarn/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey-report_purchaseWarn_export
+      method: get
+      url: /report/PurchaseWarn/export
+
+- !com.aukey.security.meata.Meatadata
+   name: 付款执行情况报表
+   code: aukey-report_payOrder_index
+   method: get
+   url: /report/payOrder/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: aukey-report_payOrder_export
+      method: get
+      url: /report/payOrder/export      
+- !com.aukey.security.meata.Meatadata
+   name: 海外调拨数据
+   code: aukey-report_transfer_oversea
+   method: get
+   url: /TransferExport/TransferOversea   
+- !com.aukey.security.meata.Meatadata
+   name: 采购入库财务查询
+   code: report_reportfinance_index
+   method: get
+   url: /report/finance/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 查询
+      code: report_reportfinance_search
+      method: get
+      url: /report/finance/search
+   - !com.aukey.security.meata.Meatadata
+      name: 导出excel
+      code: report_reportfinance_export
+      method: get
+      url: /report/finance/export
+- !com.aukey.security.meata.Meatadata
+   name: 中央库存查询报表
+   code: center_stock_report
+   method: get
+   url: /report/centerStock/index
+- !com.aukey.security.meata.Meatadata
+   name: SKU与事业部对应关系表
+   code: center_sku_depart_relation
+   method: get
+   url: /report/centerSkuDepartRelation/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导入
+      code: center_sku_depart_relation_import
+      method: get
+      url: /report/centerSkuDepartRelation/upLoadFile
+- !com.aukey.security.meata.Meatadata
+   name: FNSKU与SKU匹配查询报表
+   code: report_fnsku_sku_matching_index
+   method: get
+   url: /report/FnskuAndSkuMatching/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: report_fnsku_sku_matching_export
+      method: get
+      url: #
+- !com.aukey.security.meata.Meatadata
+   name: 海外仓库存核实报表
+   code: stock_verify_report
+   method: get
+   url: /report/stockverify/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: stock_verify_report_export
+      method: get
+      url: #
+- !com.aukey.security.meata.Meatadata
+   name: 进销存报表
+   code: stock_purchaseSellStock_report
+   method: get
+   url: /report/purchaseSellStock/index
+   variables: 
+   - !com.aukey.security.meata.Meatadata
+      name: 导出
+      code: stock_purchaseSellStock_report_export
+      method: get
+      url: #  

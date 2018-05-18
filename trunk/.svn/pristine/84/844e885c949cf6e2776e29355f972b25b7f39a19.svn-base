@@ -1,0 +1,284 @@
+/*requirment-form */
+.requirment-form h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 10px;
+}
+.requirment-form .btn-second .btn-group,
+.requirment-form .btn-second .form-group{
+	    display: inline-block;
+}
+.requirment-form .btn-second .btn-group{
+	margin-right:20px;
+}
+.requirment-pop .modal-body.one .form-group{
+	    display: inline-block;
+}
+.requirment-pop .search-form-div{
+    display: inline-block;
+    background-color: transparent;
+}
+/* .requirment-pop .modal-footer.spe button {
+    width: inherit;
+} */
+.requirment-pop .col-md-5 h5{
+	font-size:16px;
+	font-weight: bold;
+}
+.requirement-table input#skuCode{
+    width: 76%;
+    display: inline-block;
+    float: left;    
+}
+ .requirement-table{
+   border: 2px solid #ddd;
+}
+ .requirement-table thead th,
+  .requirement-table tbody td {
+    border-right: 1px solid #ddd;
+}
+
+ .requirement-table .fa.fa-ellipsis-h {
+    font-size: 16px;
+    margin-top: 10px;
+}
+ .requirement-table a i{
+    color: #666;
+    font-size: 22px;
+    }
+ .requirement-table i.fa.fa-minus-circle {
+    margin-right: 6px;
+}
+ .requirement-table a i:hover{
+    color: #2cc3a9;
+    curser:point;
+    }
+ h4.requirements{
+           font-size: 16px;
+           font-weight: bold;
+       }
+ h4.requirements span{
+      display:inline-block;
+      font-size:14px;
+      font-weight:normal;;
+   }
+ 
+ .product-information p{
+   display:none;
+   text-align: center;
+    margin-bottom: 0;
+    }
+ .product-information {
+  display:none;
+   position:fixed;
+  border: 2px solid #28bba2;
+    padding: 0;
+    width: inherit;
+    border-radius: 6px;
+    position:fixed;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+}
+
+.warehouse{
+    border: 2px solid #28bba2;
+    border-radius: 6px;
+	width:100px;
+	height:200px;
+	overflow-y: scroll;
+	position:absolute;
+    left:0;
+    display:none;
+    background: #fff;
+        top: 34px;
+    display: none;
+    background: #fff;
+    z-index: 500;
+}
+
+.warehouse div{
+    text-align: left;
+    padding-left:10px;
+    line-height: 24px;
+    border-bottom: 1px solid #ddd;
+    transition:0.8s all ease;
+}
+.warehouse div:first-child{
+   margin-top:5px;
+}
+.warehouse div:last-child{
+   margin-bottom:5px;
+}
+ .warehouse div:hover{
+       background: #28bba2;
+       color:#fff;
+       cursor: pointer;
+}  
+
+.storge{
+	   background: #28bba2;
+       color:#000;
+       cursor: pointer;
+}
+.storge2{
+	   background: #28bba2;
+       color:#000;
+       cursor: pointer;
+}
+.amazonAccount{
+    border: 2px solid #28bba2;
+    border-radius: 6px;
+	width:100px;
+	height:200px;
+	overflow-y: scroll;
+	position:absolute;
+    left:0;
+    display:none;
+    background: #fff;
+        top: 34px;
+    display: none;
+    background: #fff;
+    z-index: 500;
+}
+.amazonAccount div{
+    text-align: center;
+    line-height: 24px;
+    border-bottom: 1px solid #ddd;
+}
+.amazonAccount div:first-child{
+   margin-top:5px;
+	}
+.amazonAccount div:last-child{
+   margin-bottom:5px;
+	}
+.amazonAccount div:hover{
+       background: #28bba2;
+       color:#fff;
+       cursor: pointer;
+}
+/*2017.1.18*/
+.requirment-pop .fixed-table-pagination{
+	 margin-left: 0px;
+}
+.requirment-pop .modal-dialog.shop-sel td{
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.modal-dialog.shop-sel .pull-right.pagination {
+    position: fixed;
+    left: 0;
+    background: transparent;
+    height: 34px;
+    margin-top: 66px;
+    margin-bottom: 12px;
+    width: inherit;
+    text-align: center;
+    margin-left: 210px;
+}
+.requirment-pop .modal-dialog.shop-sel .col-md-7 {
+	    padding-bottom: 40px;
+}
+.requirment-pop.modal .modal-dialog.shop-sel{
+	width:1070px;
+}
+/*2017.1.19*/
+.product-information .fixed-table-pagination{
+	width:inherit;
+}
+.product-information .pull-left.pagination-detail{
+	 margin-top: -134px;
+}
+.product-information .fixed-table-body {
+    height: 360px;
+    overflow: hidden;
+}
+.product-information td {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#table1{
+	    box-shadow: 0 1px 18px 1px rgba(0, 0, 0, .175);
+}
+
+@media screen and (max-width: 1070px){
+.requirment-pop.modal .modal-dialog.shop-sel{
+	width:100%;
+}
+.requirment-pop .col-md-7,
+.requirment-pop .col-md-5{
+	width:100%;
+}
+.requirment-pop .col-md-5{
+	margin-top:40px;
+	}
+.modal-dialog.shop-sel .pull-right.pagination {
+    width: 100%;
+}
+.requirment-pop .modal-dialog.shop-sel td{
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.requirment-pop.modal .shop-sel .search-form-div input {
+    width: 480px;
+}
+}
+@media screen and (max-width: 960px){
+.requirement-table i.fa.fa-minus-circle {
+    margin-right: 0;
+}
+.requirement-table a i {
+    font-size: 20px;
+}
+}
+@media screen and (max-width: 620px){
+.requirment-pop.modal .shop-sel .search-form-div input {
+    width: 340px;
+}
+.requirment-pop .fixed-table-pagination{
+	height: 96px;
+}
+.modal-dialog.shop-sel .pull-right.pagination {
+    margin-top: 116px;
+}
+.modal-dialog.shop-sel .pull-left.pagination-detail {
+    background: transparent;
+}
+}
+@media screen and (max-width: 500px){
+	.requirment-pop.modal .shop-sel .search-form-div input {
+    width: 180px;
+}
+	}
+@media (max-width: 1280px){
+.modal-dialog {
+    margin: 0 auto!important;
+}
+}
+
+
+/*2017.4.18*/
+.amazonAccount {
+    position: fixed;
+}
+/* 文本输入框的鼠标样式重置为默认的 */
+.form-control[disabled]{
+   cursor: default;
+}
+/* 
+发货计划页面的容器样式
+ */
+.del-play .smart-widget-inner {
+            margin-bottom: 0;
+            padding-bottom: 146px;
+ }
+ /*新建需求单中 sku输入框的样式  */
+input#skuSearch {
+	width: 492px;
+}

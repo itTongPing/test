@@ -1,0 +1,78 @@
+<div class="sidebar-inner scrollable-sidebar" th:fragment="menu">
+<!--  
+	<div class="main-menu">
+		<ul class="accordion">
+			<li class="bg-palette1 open">
+				<a href="">
+					<span class="menu-content block">
+						<span class="menu-icon">
+						<i class="block fa fa-gift fa-lg"></i>
+						<span class="submenu-icon"></span>
+						</span>
+						<span class="text m-left-sm">Wish工具</span>
+						<small class="badge badge-success badge-square bounceIn animation-delay5 m-left-xs"></small>
+					</span>
+					<span class="menu-content-hover block">
+						Wish
+					</span>
+				</a>
+				<ul class="submenu">
+					<li class="openable">
+						<a th:href="@{/product/index}">
+							<span class="submenu-label">产品信息查询</span>
+						</a>
+					</li>
+					<li class="openable">
+						<a id="wishpro1" th:href="@{http://wishpro.aukeyit.com/wishpro/attr}">
+							<span class="submenu-label">产品变参属性维护</span>
+						</a>
+					</li>
+					<li class="openable">
+						<a id="wish1" th:href="@{http://wish-publish.qa.aukeyit.com/wishpub/wish/index}">
+							<span class="submenu-label">Wish产品管理</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	-->
+	<div class="sidebar-fix-bottom clearfix">
+		<div class="user-dropdown dropup pull-left">
+			<a href="#" id="userToggle" data-toggle="dropdown" th:title="${account}">
+				<img th:src="@{/images/logo.png}" alt="" class="img-circle inline-block user-profile-pic new spe"/>
+				<span class="user-detail inline-block new spe">
+					<span th:text="${account}" style="
+					    width: 54px;
+					    display: block;
+					    overflow: hidden;
+					    text-overflow: ellipsis;
+					"></span>
+					<i class="fa fa-angle-down"></i>
+				</span>
+			</a>
+			<ul class="dropdown-menu spe" style="width: 80px;margin-left: 10px;">
+				<li>
+					<a th:href="@{/logout}">
+						<i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">退出</span>
+					</a>
+				</li>			  	  
+			</ul>
+		</div>
+	</div>
+	<!--  
+<script type="text/javascript">
+        $(function () {
+        	
+        	var url_str = window.location.href;
+    		if(url_str.indexOf(".qa.")>=0){
+    		$("#wishpro1")[0].href = "http://wishpro.qa.aukeyit.com/wishpro/attr";
+    		$("#wish1")[0].href = "http://wish-publish.qa.aukeyit.com/wishpub/wish/index";
+    		}else{
+    		$("#wishpro1")[0].href = "http://wishpro.aukeyit.com/wishpro/attr";
+    		$("#wish1")[0].href = "http://wish-publish.aukeyit.com/wishpub/wish/index";
+    		}
+        });
+</script>
+-->
+</div>

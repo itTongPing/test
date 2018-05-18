@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--  
+<html lang="en" xmlns="://.w3.org/1999/xhtml" xmlns:th="://.thymeleaf.org">
+-->
+<html lang="en" style="background: #fff;" xmlns="://.w3.org/1999/xhtml" xmlns:th="://.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>采购执行汇总</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+   	<head th:include="decorators/tags/main" />
+    <head th:include="decorators/tags/menuBaiyi" />
+    <style>
+        .warehouse_name{
+            border:1px solid #ddd !important;
+        }
+        #exportExcel{
+			margin:150px auto;
+			width: 350px;
+			height: 500px;
+		}
+		#exportContent{
+			width: 350px;
+		}
+    </style>
+</head>
+<body class="overflow-hidden" >
+<div class="wrapper preload no-left">
+    <ul class="breadcrumb">
+        <li><span class="primary-font"><i class="icon-home"></i></span>供应链报表</li>
+        <li>采购执行汇总报表</li>
+    </ul>
+    <div class="main-container ">
+        <div class="padding-md">
+        <!-- 搜索栏 -->
+        <form class="form-inline no-margin" id="queryForm" action = '/report/purchase/exe/export' method = 'get'>
+	        <div class="fun-btn">
+	        	<button  type="button" id="exoprtButton" onclick="form_submit()" class="btn btn-blue">导出</button>
+	        </div>
+            <div class="smart-widget-inner product_info">
+                <div class="search-form-div">
+                        <div class="search_l">
+                        	<!-- 时间 -->
+                            <div class="form-group">日期
+                                <input size="16" type="text" id="from_date" name="from_date" value="" placeholder="开始时间" class="form-control form_datetime"/>
+                                <input size="16" type="text" id="to_date" name="to_date" value="" placeholder="结束时间" class="form-control form_datetime"/>
+                            </div>
+                            <!-- 供应商 -->
+                            <div class="form-group">
+                                <input type="text" id="supplier" name="supplier" class="form-control" placeholder="输入供应商名称查询"/>
+                            </div>
+                            
+                            <!-- 法人主体 -->
+                            <div class="form-group" style="margin:5px 0">法人主体
+                                <select id="legaler" class="selectpicker show-tick form-control" multiple="multiple"
+                                        data-live-search="false" name = 'legaler'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option th:each="legaler :${legalers}"
+                                            th:text="${legaler}"></option>
+                                </select>
+                            </div>
+                            
+                            <!-- 高级搜索 -->
+                            <div class="btn-group marginTB-xs advanced-search" style="float: none; display: inline-block;margin-left:12px;">
+                                <a type="button" data-toggle="dropdown" onclick="searchH()" class="uperSearch"> 高级搜索<img src="/images/new-vision/nav_right_user-name_arrow.png" /></a>
+                            </div>
+                        </div>
+                        <div class="search_r">
+                            <button type="button" class="btn btn-success marginTB-xs" onclick="searchResult()">搜索</button>
+                            <img class="resetbutton" src="/images/icon_Advanced-search.png" onclick="searchReset()" />
+                        </div>
+                        <ul class="dropdown-menu" role="menu" id="searchH" style="display: none;">
+                        	<!-- 采购部门 -->
+                        	<div class="form-group" style="margin:5px 0">采购部门
+                                <select class="selectpicker show-tick form-control" multiple="multiple"
+                                        id="department" data-live-search="false" name = 'department'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option th:each="department :${departments}"
+                                            th:value="${department.groupId}"
+                                            th:text="${department.groupName}"></option>
+                                </select>
+                            </div>
+                        	<!-- 采购单号 -->
+                            <div class="form-group" style="margin:5px 0">
+	                            <input type="text" id="purchase_no" name="purchase_no" class="form-control" placeholder="输入采购单号检索"/>
+                           	    <input type="hidden" id="msg" th:value="${msg}"/>
+                           	</div>
+                           	<!-- 含税 -->
+                            <div class="form-group" style="margin:5px 0">含税
+                                <select class="selectpicker show-tick form-control" multiple="multiple"
+                                        id="include_tax" data-live-search="false" name = 'include_tax'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option value='1'>是</option>
+                                    <option value='0'>否</option>
+                                </select>
+                            </div>
+                            <!-- 付款状态 -->
+                            <div class="form-group" style="margin:5px 0">付款状态
+                                <select class="selectpicker show-tick form-control" multiple="multiple"
+                                        id="pay_status" data-live-search="false" name = 'pay_status'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option value='0'>未请款</option>
+                                    <option value='1'>未付款</option>
+                                    <option value='2'>部分付款</option>
+                                    <option value='3'>已全付</option>
+                                </select>
+                            </div>
+                            <!-- 开票状态 -->
+                            <div class="form-group" style="margin:5px 0">开票状态
+                                <select class="selectpicker show-tick form-control" multiple="multiple"
+                                        id="invoice_status" data-live-search="false" name = 'invoice_status'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option value='0'>全部开票</option>
+                                    <option value='1'>未开票</option>
+                                    <option value='2'>部分开票</option>
+                                </select>
+                            </div>
+                            <!-- 合同状态 -->
+                            <div class="form-group" style="margin:5px 0">合同状态
+                                <select class="selectpicker show-tick form-control" multiple="multiple"
+                                        id="contract_status" data-live-search="false" name = 'contract_status'>
+                                    <option value='-1'>全部</option>
+                                    <option value='1'>已签署</option>
+                                    <option value='0'>未签署</option>
+                                </select>
+                            </div>
+                        </ul>
+                    
+                </div>
+                <!-- 表格 -->
+                <table id="table02" class = 'table-scroll'></table>
+            </div><!-- ./smart-widget-inner -->
+		</form>
+        </div><!-- ./padding-md -->
+    </div><!-- /main-container -->
+    <!-- 引入页脚 -->
+    <head th:include="decorators/tags/footer_mini"/>
+</div>
+<!-- 导出模态框 -->
+	<div class="modal fade bs-example-modal-sm" id="exportExcel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content" id="exportContent">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">导出</h4>
+	      </div>
+		  <div class="modal-body">
+			 <div class="confirm_txt" style="line-height: 20px;height: 22px;">导出的数据量过大，系统将以邮件方式发送，是否确定导出</div>
+		  </div>
+	      <div class="modal-footer">
+	        <button type="button" onclick="exportExcel()" class="btn marginTB-xs btn-primary">确认</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<script>
+//日历插件配置
+var aaa = new Date();
+aaa.setMonth(new Date().getMonth()-1);
+var nowtime = new Date();
+$("#from_date").datetimepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    language: 'zh-CN',
+    minView: '2',
+    toggleActive: false,
+    zIndexOffset: 1,
+    endDate: nowtime
+}).datetimepicker('setDate',aaa);
+$("#to_date").datetimepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    language: 'zh-CN',
+    minView: '2',
+    toggleActive: false,
+    zIndexOffset: 1
+}).datetimepicker('setDate',nowtime);
+/* flyer.date($("#from_date"),{
+    isTime: false,
+	format: "yyyy-mm-dd"
+});
+flyer.date($("#to_date"),{
+    isTime: false,
+	format: "yyyy-mm-dd"
+}) */
+</script>
+<!-- 当前页面脚本 -->
+<script th:src="@{'/js/purchaseAllReport.js?v='+${version}}"></script>
+</body>
+</html>

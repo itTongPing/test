@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aukey.report.mapper.PayOrderMapper">
+  <resultMap id="BaseResultMap" type="com.aukey.report.vo.PayOrderReportVo">
+    <id column="request_id"  property="requestId" />
+    <result column="request_order_id" property="requestOrderId" />
+    <result column="bill_date"  property="billDate" />
+    <result column="corporation_id"  property="corporationId" />
+    <result column="supplier_id"  property="supplierId" />
+    <result column="currency"  property="currency" />
+    <result column="purchase_order_id"  property="purchaseOrderId" />
+    <result column="purchase_order_date"  property="purchaseOrderDate" />
+    <result column="type"  property="type" />
+    
+    <result column="sum_total_money"  property="sumTotalMoney" />
+    <result column="sum_recei_money"  property="sumReceiMoney" />
+    
+    <result column="pay_way"  property="payWay" />
+    <result column="buyer_id"  property="buyer" />
+    <result column="request_dept_id"  property="requestDeptId" />
+
+    <result column="pay_order_id"  property="payOrderId" />
+    <result column="requester"  property="requester" />
+    <result column="third_order_id"  property="thirdOrderId" />
+    <result column="pay_status"  property="payStatus" />
+  </resultMap>
+  
+  <select id="queryPayOrderReportInfo" parameterType="map" resultMap="BaseResultMap">
+SELECT ts1.*, GROUP_CONCAT(ts2.pay_order_id) AS pay_order_id  FROM(
+SELECT tt1.*,GROUP_CONCAT(tt2.purchase_order_id) AS purchase_order_id, tt2.create_date AS purchase_order_date,
+tt2.buyer_id, tt2.currency, SUM(tt1.total_money) AS sum_total_money  FROM (
+	SELECT t.*, t2.relate_order_id, t2.pay_way, t2.total_money FROM (
+		SELECT rfo.request_id, rfo.request_order_id, rfo.bill_date, rfo.corporation_id, rfo.supplier_id,
+		rfo.type, rfo.request_dept_id, rfo.requester, rfo.third_order_id, SUM(rfod.recei_money) AS sum_recei_money, rfod.pay_status
+		FROM (SELECT * FROM supply_bankroll.request_funds_order 
+			  WHERE data_status = '1' 
+			  <if test="billBeginDate != null">
+			  	AND bill_date &gt;= #{billBeginDate}
+			  </if>
+			  <if test='billEndDate != null'>
+				AND bill_date &lt;= #{billEndDate}
+			  </if>
+			  <if test="requestOrderId != null">
+			  	AND request_order_id IN
+			 	<foreach collection="requestOrderId" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			  </if>
+			  <if test='supplierId != null'>
+			   AND supplier_id IN
+				<foreach collection="supplierId" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			  </if>
+			  <if test='corporationId != null '>
+			   AND corporation_id IN
+				<foreach collection="corporationId" index="index" item="item" open="(" separator="," close=")">
+		    		#{item}
+		    	</foreach>
+			  </if>
+			  <if test='purchaseDepartment != null'>
+				AND request_dept_id IN
+				<foreach collection="purchaseDepartment" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			  </if>
+			  ORDER BY bill_date DESC
+			  <if test="purchaseSearch == null">
+			  LIMIT #{page},#{limit}
+			  </if>
+		) rfo
+		LEFT JOIN supply_bankroll.request_funds_order_detail rfod ON rfo.request_id = rfod.request_id
+		GROUP BY rfo.request_id  
+		ORDER BY rfo.bill_date DESC
+	)t
+	JOIN supply_bankroll.request_funds_order_relate t1 ON t.request_id = t1.request_id
+	JOIN supply_bankroll.request_relate_order t2 ON t1.relate_id = t2.relate_id
+	WHERE LENGTH(t2.relate_order_id) = 13
+	GROUP BY t.request_id
+)tt1 LEFT JOIN supply_chain.purchase_order tt2 ON tt1.relate_order_id = tt2.purchase_order_id
+	<if test="purchaseSearch != null">
+		WHERE 1=1
+		<if test="purchaseOrderId != null">
+			AND tt1.relate_order_id IN
+			<foreach collection="purchaseOrderId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="purchaseBeginDate != null">
+			AND tt2.create_date &gt;= #{purchaseBeginDate}
+		</if>
+		<if test='purchaseEndDate != null'>
+			AND tt2.create_date &lt;= #{purchaseEndDate}
+		</if>
+		<if test="payMethod != null">
+			AND tt1.pay_way IN
+			<foreach collection="payMethod" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test='payStatus != null'>
+		   AND tt1.pay_status IN
+		   <foreach collection="payStatus" index="index" item="item" open="(" separator="," close=")">
+		   		#{item}
+		   </foreach>
+		</if>
+		GROUP BY tt1.request_id
+		ORDER BY tt1.bill_date DESC
+		LIMIT #{page},#{limit}
+	</if>
+	<if test="purchaseSearch == null">		
+		GROUP BY tt1.request_id		
+	</if>
+)ts1 LEFT JOIN supply_bankroll.pay_order_info ts2 ON ts1.request_id = ts2.request_id
+GROUP BY ts1.request_id
+ORDER BY ts1.bill_date DESC
+  </select>
+  
+  <!-- queryPayOrderReportInfoWithPurchaseInfo -->
+
+	<select id="simpleSelectCount" parameterType="map" resultType="Long">
+		SELECT Count(request_id) FROM supply_bankroll.request_funds_order
+		WHERE 1 = 1
+		<if test="billBeginDate != null">
+			AND bill_date &gt;= #{billBeginDate}
+		</if>
+		<if test='billEndDate != null'>
+			AND bill_date &lt;= #{billEndDate}
+		</if>
+		<if test="requestOrderId != null">
+			AND request_order_id IN
+			<foreach collection="requestOrderId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test='supplierId != null'>
+			AND supplier_id IN
+			<foreach collection="supplierId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test='corporationId != null '>
+			AND corporation_id IN
+			<foreach collection="corporationId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test='purchaseDepartment != null'>
+			AND request_dept_id IN
+			<foreach collection="purchaseDepartment" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		
+		AND data_status = '1'
+	</select>
+  
+  <select id="count" parameterType="map" resultType="Long">
+  SELECT COUNT(*) AS pay_order_id  FROM( 
+  	SELECT tt1.request_id  FROM (
+		SELECT t.request_id, t2.relate_order_id, t2.pay_way FROM (
+  			SELECT rfo.request_id FROM (
+				SELECT request_id FROM supply_bankroll.request_funds_order 
+			 	WHERE 1 = 1
+			 	<if test="billBeginDate != null">
+				AND bill_date &gt;= #{billBeginDate}
+				</if>
+				<if test='billEndDate != null'>
+				AND bill_date &lt;= #{billEndDate}
+				</if>
+				<if test="requestOrderId != null">
+				AND request_order_id IN
+					<foreach collection="requestOrderId" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+					</foreach>
+				</if>
+				<if test='supplierId != null'>
+				AND supplier_id IN
+					<foreach collection="supplierId" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+					</foreach>
+				</if>
+				<if test='corporationId != null '>
+					AND corporation_id IN
+					<foreach collection="corporationId" index="index" item="item" open="(" separator="," close=")">
+						#{item}
+					</foreach>
+				</if>
+				<if test='purchaseDepartment != null'>
+				AND request_dept_id IN
+					<foreach collection="purchaseDepartment" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+					</foreach>
+				</if>
+				AND data_status = '1' 
+			)rfo
+			LEFT JOIN supply_bankroll.request_funds_order_detail rfod ON rfo.request_id = rfod.request_id
+			where 1=1
+			<if test='payStatus != null'>
+			AND rfod.pay_status IN
+		   		<foreach collection="payStatus" index="index" item="item" open="(" separator="," close=")">
+		   		#{item}
+		   		</foreach>
+			</if>
+		)t
+		JOIN supply_bankroll.request_funds_order_relate t1 ON t.request_id = t1.request_id
+		JOIN supply_bankroll.request_relate_order t2 ON t1.relate_id = t2.relate_id
+		GROUP BY t.request_id
+ 	)tt1 LEFT JOIN supply_chain.purchase_order tt2 ON tt1.relate_order_id = tt2.purchase_order_id	
+	<if test="purchaseSearch != null">
+		WHERE 1=1
+		<if test="purchaseOrderId != null">
+		AND tt1.relate_order_id IN
+			<foreach collection="purchaseOrderId" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+		<if test="purchaseBeginDate != null">
+		AND tt2.create_date &gt;= #{purchaseBeginDate}
+		</if>
+		<if test='purchaseEndDate != null'>
+		AND tt2.create_date &lt;= #{purchaseEndDate}
+		</if>
+		<if test="payMethod != null">
+		AND tt1.pay_way IN
+			<foreach collection="payMethod" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+		</if>
+	</if>	
+)ts1
+  </select>
+  
+      <select id="getInStoryTotalMoneyByPurchaseOrderIds" resultType="map" parameterType="String">
+    SELECT t.purchase_number AS purchaseOrderId , sum(t2.price*t.nondefective_number) AS totalMoney FROM(
+		SELECT strp.purchase_number,strp.sku_code,sum(strp.nondefective_number) as nondefective_number
+		FROM supply_sign.`storage`  strp
+		WHERE strp.purchase_number = #{purchaseOrderId}
+		GROUP BY strp.sku_code
+	)t INNER JOIN (
+		SELECT if(purd.is_tax='1',pd.tax_unit_price,pd.unit_price) as price,pd.sku_code
+		FROM supply_chain.purchase_order purd
+		INNER JOIN supply_chain.purchase_demand pd on purd.purchase_order_id=pd.purchase_order_id
+		WHERE purd.purchase_order_id = #{purchaseOrderId}
+		GROUP BY pd.sku_code
+	)t2 on t.sku_code = t2.sku_code
+	GROUP BY t.purchase_number
+    </select>
+
+    <select id="getAllNewSupplierPayment" resultType="map">
+    SELECT t.payment_method_id AS paymentMethodId, t.method FROM supplier2.base_payment_method t 
+	JOIN (
+		SELECT pay_way FROM supply_chain.purchase_order GROUP BY pay_way
+	)t1 ON t.payment_method_id = t1.pay_way
+    </select>
+
+    <select id="getAllCorporationList" resultType="map">
+    SELECT corporation_id AS corporationId, corporation_name AS corporationName  FROM supplier2.base_corporation
+    </select>
+
+    <select id="getAllDeptId" resultType="Integer">
+    	SELECT request_dept_id FROM supply_bankroll.request_funds_order where data_status = '1' GROUP BY request_dept_id
+    </select>
+  
+</mapper>

@@ -1,0 +1,441 @@
+DROP PROCEDURE IF EXISTS aukey_report.sync_center_stock_report_detail_info;
+CREATE PROCEDURE aukey_report.sync_center_stock_report_detail_info()
+BEGIN
+	
+	/*添加fba退货在途信息*/
+	INSERT INTO aukey_report.center_fba_in_transit (
+		fba_return_plan_no,
+		warehouse_id,
+		sku,
+		stock_type,
+		quantity,
+		deliver_date
+	)
+	select 
+		fba_return_plan_no,
+		warehouse_id,
+		sku,
+		2 as stock_type,
+		quantity * p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as quantity,
+		deliver_date
+   from aukey_report.center_fba_in_transit t
+   LEFT JOIN product_ms.sku_spec p on t.sku=p.`code`
+   union ALL
+    select 
+		fba_return_plan_no,
+		warehouse_id,
+		sku,
+		3 as stock_type,
+		quantity *ssp.price*ssp.currency_rate as quantity,
+		deliver_date
+   from aukey_report.center_fba_in_transit t
+	LEFT JOIN (SELECT
+	sp.sku_code,
+	sp.price,
+	sp.currency_name,
+	cs.currency_rate,
+	max(sp.update_date) /*查询sku对应的最新的价格信息*/
+FROM
+	aukey_report.center_purchase_in_transit aa
+LEFT JOIN product_ms.sku_supplier_price_new sp ON aa.sku = sp.sku_code
+LEFT JOIN (
+	SELECT
+		cs1.currency_code,
+		cs1.currency_rate,
+		cs1.update_time
+	FROM
+		product_ms.currency_set cs1 LEFT JOIN
+	(
+	SELECT currency_code,MAX(update_time) AS update_time FROM product_ms.currency_set  GROUP BY currency_code
+	) cs2 ON cs1.currency_code = cs2.currency_code AND cs1.update_time=cs2.update_time
+	WHERE
+		audit_status = '1' 
+	GROUP BY
+		currency_code
+) cs /*查询币种最新的汇率*/
+ON cs.currency_code = sp.currency_name
+WHERE
+	audit_status = '1'
+GROUP BY
+	sp.sku_code)ssp on t.sku = ssp.sku_code;
+   
+   
+   
+   
+	
+	 /*FBA库存信息的体积和金额*/
+	INSERT INTO aukey_report.center_fba_stock_count (
+		account_id,
+		account_name,
+		site_group_id,
+		area,
+		sku,
+		stock_type,
+		amazon_sku,
+		fnsku,
+		product_name,
+		your_price,
+		sale_quantity,
+		no_sale_quantity,
+		quantity
+	)
+	select 
+    account_id,
+		account_name,
+		site_group_id,
+		area,
+		sku,
+		2 as stock_type,
+		amazon_sku,
+		fnsku,
+		product_name,
+		your_price,
+		sale_quantity* p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as sale_quantity,
+		no_sale_quantity* p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as no_sale_quantity,
+		quantity* p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as quantity
+ from aukey_report.center_fba_stock_count t
+ LEFT JOIN product_ms.sku_spec p on t.sku=p.`code`
+  union ALL
+	select 
+    account_id,
+		account_name,
+		site_group_id,
+		area,
+		sku,
+		3 as stock_type,
+		amazon_sku,
+		fnsku,
+		product_name,
+		your_price,
+		sale_quantity*ssp.price*ssp.currency_rate as sale_quantity,
+		no_sale_quantity*ssp.price*ssp.currency_rate as no_sale_quantity,
+		quantity*ssp.price*ssp.currency_rate as quantity
+from aukey_report.center_fba_stock_count t
+LEFT JOIN (SELECT
+	sp.sku_code,
+	sp.price,
+	sp.currency_name,
+	cs.currency_rate,
+	max(sp.update_date) /*查询sku对应的最新的价格信息*/
+FROM
+	aukey_report.center_purchase_in_transit aa
+LEFT JOIN product_ms.sku_supplier_price_new sp ON aa.sku = sp.sku_code
+LEFT JOIN (
+	SELECT
+		cs1.currency_code,
+		cs1.currency_rate,
+		cs1.update_time
+	FROM
+		product_ms.currency_set cs1 LEFT JOIN
+	(
+	SELECT currency_code,MAX(update_time) AS update_time FROM product_ms.currency_set  GROUP BY currency_code
+	) cs2 ON cs1.currency_code = cs2.currency_code AND cs1.update_time=cs2.update_time
+	WHERE
+		audit_status = '1' 
+	GROUP BY
+		currency_code
+) cs /*查询币种最新的汇率*/
+ON cs.currency_code = sp.currency_name
+WHERE
+	audit_status = '1'
+GROUP BY
+	sp.sku_code)ssp on t.sku = ssp.sku_code;
+						
+	
+/*海外转运仓在途信息的体积和金额*/
+	INSERT INTO aukey_report.center_oversea_transport_in_transit (
+		transfer_no,
+		out_warehouse,
+		in_warehouse,
+		sku,
+		stock_type,
+		quantity,
+		deliver_date
+	)
+	select
+		transfer_no,
+		out_warehouse,
+		in_warehouse,
+		sku,
+		2 as stock_type,
+		quantity*p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as quantity,
+		deliver_date
+	from aukey_report.center_oversea_transport_in_transit t
+	LEFT JOIN product_ms.sku_spec p on t.sku=p.`code`
+	union ALL
+	select
+			transfer_no,
+			out_warehouse,
+			in_warehouse,
+			sku,
+			3 as stock_type,
+			quantity*ssp.price*ssp.currency_rate as quantity,
+			deliver_date
+	from aukey_report.center_oversea_transport_in_transit t
+	LEFT JOIN (SELECT
+	sp.sku_code,
+	sp.price,
+	sp.currency_name,
+	cs.currency_rate,
+	max(sp.update_date) /*查询sku对应的最新的价格信息*/
+FROM
+	aukey_report.center_purchase_in_transit aa
+LEFT JOIN product_ms.sku_supplier_price_new sp ON aa.sku = sp.sku_code
+LEFT JOIN (
+	SELECT
+		cs1.currency_code,
+		cs1.currency_rate,
+		cs1.update_time
+	FROM
+		product_ms.currency_set cs1 LEFT JOIN
+	(
+	SELECT currency_code,MAX(update_time) AS update_time FROM product_ms.currency_set  GROUP BY currency_code
+	) cs2 ON cs1.currency_code = cs2.currency_code AND cs1.update_time=cs2.update_time
+	WHERE
+		audit_status = '1' 
+	GROUP BY
+		currency_code
+) cs /*查询币种最新的汇率*/
+ON cs.currency_code = sp.currency_name
+WHERE
+	audit_status = '1'
+GROUP BY
+	sp.sku_code)ssp on t.sku = ssp.sku_code;
+						
+						
+	/*头程在途信息的体积和金额*/
+	INSERT INTO aukey_report.center_head_in_transit (
+		transfer_no,
+		out_warehouse,
+		in_warehouse,
+		sku,
+		stock_type,
+		quantity,
+		transport_type,
+		deliver_date
+	)
+		select 
+		transfer_no,
+		out_warehouse,
+		in_warehouse,
+		sku,
+		2 as stock_type,
+		quantity* p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as quantity,
+		transport_type,
+		deliver_date	
+	from aukey_report.center_head_in_transit t
+	LEFT JOIN product_ms.sku_spec p on t.sku=p.`code`
+	UNION ALL
+		select 
+			transfer_no,
+			out_warehouse,
+			in_warehouse,
+			sku,
+	    3 as stock_type, 
+			quantity*ssp.price*ssp.currency_rate as quantity,
+			transport_type,
+			deliver_date	
+	from aukey_report.center_head_in_transit t
+	LEFT JOIN (SELECT
+	sp.sku_code,
+	sp.price,
+	sp.currency_name,
+	cs.currency_rate,
+	max(sp.update_date) /*查询sku对应的最新的价格信息*/
+FROM
+	aukey_report.center_purchase_in_transit aa
+LEFT JOIN product_ms.sku_supplier_price_new sp ON aa.sku = sp.sku_code
+LEFT JOIN (
+	SELECT
+		cs1.currency_code,
+		cs1.currency_rate,
+		cs1.update_time
+	FROM
+		product_ms.currency_set cs1 LEFT JOIN
+	(
+	SELECT currency_code,MAX(update_time) AS update_time FROM product_ms.currency_set  GROUP BY currency_code
+	) cs2 ON cs1.currency_code = cs2.currency_code AND cs1.update_time=cs2.update_time
+	WHERE
+		audit_status = '1' 
+	GROUP BY
+		currency_code
+) cs /*查询币种最新的汇率*/
+ON cs.currency_code = sp.currency_name
+WHERE
+	audit_status = '1'
+GROUP BY
+	sp.sku_code)ssp on t.sku = ssp.sku_code;
+	
+						
+
+		/*国内中转仓库存信息的体积和金额*/
+	INSERT INTO aukey_report.center_domestic_transfer_warehouse (
+		warehouse_id,
+		sku,
+		stock_type,
+		quantity
+	)
+	select   
+		warehouse_id,
+		sku,
+		2 as stock_type,
+		quantity* p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as quantity
+	from aukey_report.center_domestic_transfer_warehouse t
+	LEFT JOIN product_ms.sku_spec p on t.sku=p.`code`
+	UNION ALL
+	select   
+		warehouse_id,
+		sku,
+		3 as stock_type,
+		quantity*ssp.price*ssp.currency_rate as quantity
+	from aukey_report.center_domestic_transfer_warehouse t
+	LEFT JOIN (SELECT
+	sp.sku_code,
+	sp.price,
+	sp.currency_name,
+	cs.currency_rate,
+	max(sp.update_date) /*查询sku对应的最新的价格信息*/
+FROM
+	aukey_report.center_purchase_in_transit aa
+LEFT JOIN product_ms.sku_supplier_price_new sp ON aa.sku = sp.sku_code
+LEFT JOIN (
+	SELECT
+		cs1.currency_code,
+		cs1.currency_rate,
+		cs1.update_time
+	FROM
+		product_ms.currency_set cs1 LEFT JOIN
+	(
+	SELECT currency_code,MAX(update_time) AS update_time FROM product_ms.currency_set  GROUP BY currency_code
+	) cs2 ON cs1.currency_code = cs2.currency_code AND cs1.update_time=cs2.update_time
+	WHERE
+		audit_status = '1' 
+	GROUP BY
+		currency_code
+) cs /*查询币种最新的汇率*/
+ON cs.currency_code = sp.currency_name
+WHERE
+	audit_status = '1'
+GROUP BY
+	sp.sku_code)ssp on t.sku = ssp.sku_code;
+					
+	/*采购订单在途信息的体积和金额*/
+	INSERT INTO aukey_report.center_purchase_in_transit (
+		purchase_order_id,
+		purchase_demand_id,
+		warehouse_id,
+		sku,
+		stock_type,
+		quantity,
+		in_way_quantity,
+		deliver_date
+	)	
+	SELECT 
+		purchase_order_id,
+		purchase_demand_id,
+		warehouse_id,
+		sku,
+		2 as stock_type,
+		quantity* p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as quantity,
+		in_way_quantity* p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as in_way_quantity,
+		deliver_date
+	from aukey_report.center_purchase_in_transit t
+	LEFT JOIN product_ms.sku_spec p on t.sku=p.`code`
+	UNION ALL
+		SELECT 
+		purchase_order_id,
+		purchase_demand_id,
+		warehouse_id,
+		sku,
+		3 as stock_type,
+		quantity*ssp.price*ssp.currency_rate as quantity,
+		in_way_quantity*ssp.price*ssp.currency_rate as in_way_quantity,
+		deliver_date
+	from aukey_report.center_purchase_in_transit t
+	LEFT JOIN (SELECT
+	sp.sku_code,
+	sp.price,
+	sp.currency_name,
+	cs.currency_rate,
+	max(sp.update_date) /*查询sku对应的最新的价格信息*/
+FROM
+	aukey_report.center_purchase_in_transit aa
+LEFT JOIN product_ms.sku_supplier_price_new sp ON aa.sku = sp.sku_code
+LEFT JOIN (
+	SELECT
+		cs1.currency_code,
+		cs1.currency_rate,
+		cs1.update_time
+	FROM
+		product_ms.currency_set cs1 LEFT JOIN
+	(
+	SELECT currency_code,MAX(update_time) AS update_time FROM product_ms.currency_set  GROUP BY currency_code
+	) cs2 ON cs1.currency_code = cs2.currency_code AND cs1.update_time=cs2.update_time
+	WHERE
+		audit_status = '1' 
+	GROUP BY
+		currency_code
+) cs /*查询币种最新的汇率*/
+ON cs.currency_code = sp.currency_name
+WHERE
+	audit_status = '1'
+GROUP BY
+	sp.sku_code)ssp on t.sku = ssp.sku_code;
+						
+	/*海外仓库存的体积和金额*/
+	INSERT INTO aukey_report.center_oversea_warehouse (
+	warehouse_id,
+	sku,
+	stock_type,
+	no_lock_quantity,
+	lock_quantity,
+	quantity
+	)
+		select 
+		warehouse_id,
+		sku,
+		2 as stock_type,
+		no_lock_quantity * p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as no_lock_quantity,
+		lock_quantity * p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as lock_quantity,
+		quantity * p.goods_package_height * p.goods_package_length * p.goods_package_width / 1000000 as quantity
+		from aukey_report.center_oversea_warehouse t
+	LEFT JOIN product_ms.sku_spec p on t.sku=p.`code`
+	UNION ALL
+	select 
+		warehouse_id,
+		sku,
+		3 as stock_type,
+		no_lock_quantity * ssp.price*ssp.currency_rate as no_lock_quantity,
+		lock_quantity * ssp.price*ssp.currency_rate as lock_quantity,
+		quantity * ssp.price*ssp.currency_rate as quantity
+		from aukey_report.center_oversea_warehouse t
+	LEFT JOIN (SELECT
+	sp.sku_code,
+	sp.price,
+	sp.currency_name,
+	cs.currency_rate,
+	max(sp.update_date) /*查询sku对应的最新的价格信息*/
+FROM
+	aukey_report.center_purchase_in_transit aa
+LEFT JOIN product_ms.sku_supplier_price_new sp ON aa.sku = sp.sku_code
+LEFT JOIN (
+	SELECT
+		cs1.currency_code,
+		cs1.currency_rate,
+		cs1.update_time
+	FROM
+		product_ms.currency_set cs1 LEFT JOIN
+	(
+	SELECT currency_code,MAX(update_time) AS update_time FROM product_ms.currency_set  GROUP BY currency_code
+	) cs2 ON cs1.currency_code = cs2.currency_code AND cs1.update_time=cs2.update_time
+	WHERE
+		audit_status = '1' 
+	GROUP BY
+		currency_code
+) cs /*查询币种最新的汇率*/
+ON cs.currency_code = sp.currency_name
+WHERE
+	audit_status = '1'
+GROUP BY
+	sp.sku_code)ssp on t.sku = ssp.sku_code
+END;

@@ -1,0 +1,66 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : 10.1.1.86_QA(aukey_report)
+Source Server Version : 50719
+Source Host           : 10.1.1.86:3306
+Source Database       : aukey_report
+
+Target Server Type    : MYSQL
+Target Server Version : 50719
+File Encoding         : 65001
+
+Date: 2018-01-25 17:30:11
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Procedure structure for sync_center_stock_report
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sync_center_stock_report`;
+DELIMITER ;;
+CREATE DEFINER=`aukey_report`@`10.1.1.%` PROCEDURE `sync_center_stock_report`()
+BEGIN
+TRUNCATE TABLE aukey_report.center_stock_report;
+INSERT INTO `aukey_report`.`center_stock_report` (
+	`upc`,
+	`sku`,
+	 stock_type,
+	`sku_name`,
+	`fba_transfer`,
+	`fba_stock_count`,
+	`oversea_stock_transfer`,
+	`first_air_transfer`,
+	`first_ship_transfer`,
+	`first_trains_transfer`,
+	`transfer_warehouse_count`,
+	`purchase_transfer`,
+	`oversea_stock_count`
+)
+SELECT
+	u.upc,
+	sku,
+	stock_type,
+	s.`name`,
+	SUM(CASE  WHEN type='FBA退货在途' THEN stock_count ELSE 0 END) AS 'fba_transfer', 
+	SUM(CASE  WHEN type='FBA库存' THEN stock_count ELSE 0 END) AS 'fba_stock_count', 
+	SUM(CASE  WHEN type='海外仓转运' THEN stock_count ELSE 0 END) AS 'oversea_stock_transfer', 
+	SUM(CASE  WHEN type='头程空运' THEN stock_count ELSE 0 END) AS 'first_air_transfer', 
+	SUM(CASE  WHEN type='头程海运' THEN stock_count ELSE 0 END) AS 'first_ship_transfer', 
+	SUM(CASE  WHEN type='头程铁运' THEN stock_count ELSE 0 END) AS 'first_trains_transfer', 
+	SUM(CASE  WHEN type='国内中转仓库存' THEN stock_count ELSE 0 END) AS 'transfer_warehouse_count', 
+	SUM(CASE  WHEN type='采购订单在途' THEN stock_count ELSE 0 END) AS 'purchase_transfer',
+	SUM(CASE  WHEN type='海外仓库存' THEN stock_count ELSE 0 END) AS 'oversea_stock_count' 
+FROM
+	aukey_report.view_center_stock_info a
+LEFT JOIN product_ms.sku s ON s.code = a.sku
+LEFT JOIN product_ms.upc_wsku_relate r ON r.sku_id = s.sku_id
+LEFT JOIN product_ms.upc u ON u.id = r.upc_id
+GROUP BY
+	sku,
+	stock_type
+;
+END
+;;
+DELIMITER ;

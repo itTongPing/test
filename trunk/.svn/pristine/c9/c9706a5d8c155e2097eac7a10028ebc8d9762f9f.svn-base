@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aukey.report.mapper.PurchaseWarnMapper">
+
+	<select id="getPurchaseWarnAll" resultType="com.aukey.report.domain.PurchaseWarnReport">
+		SELECT 
+			purchase_no,
+			sku_code,
+			legaler_id,
+			supplier_id,
+			purchase_date,
+			purchase_count,
+			currency,price_tax,
+			price_without_tax,
+			purchase_sum,
+			buyer_id,
+			department_id,
+			stock_count,
+			return_count,
+			lack_count,
+			out_date,
+			out_date_count,
+			before_stock_date,
+			last_update_date
+		FROM purchase_warn_report ORDER BY purchase_date desc LIMIT 0,500
+	</select>
+
+	<!-- 查询公司法人名 -->
+	<select id="serachLegalerName" resultType="java.lang.String">
+		SELECT bc.corporation_name FROM base_corporation bc where bc.corporation_id = #{id}
+	</select>
+	<!-- 查询采购员 -->
+	<select id="serachUserName" resultType="java.lang.String">
+		SELECT u.`name` FROM `user` u WHERE u.user_id =#{userId}
+	</select>
+   <select id="queryAssignTime" parameterType="java.util.List" resultType="java.util.HashMap">
+	SELECT
+t1.requirement_no,t2.assign_time
+FROM
+supply_chain.requirement t1
+INNER JOIN supply_chain.requirement_status t2
+on t1.requirement_id=t2.requirement_id
+where t1.requirement_no in 
+	 <foreach collection="list" index="index" item="item" open="("
+                     separator="," close=")">
+                #{item}
+            </foreach>
+	</select>
+</mapper>
+

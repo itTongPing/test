@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml"
+	xmlns:th="://.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>SKU与部门对应关系表</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<head th:include="decorators/tags/main" />
+<link rel="stylesheet" th:href="@{'/css/require-form.css?v='+${version}}"/>
+<link rel="stylesheet" th:href="@{'/css/common_business_oper/common_business_oper.css?v='+${version}}" />
+<head th:include="decorators/tags/menuBaiyi" />
+<head th:include="decorators/tags/footer_mini" />
+<style>
+	.form-group
+	{
+		display: inline-block!important;
+		margin-right: 20px!important;
+	}
+	.skuName
+	{
+		/* max-width: 99px;
+	    word-break: keep-all;
+	    white-space: nowrap;
+	    text-align: left!important;
+	    overflow: hidden;
+	    text-overflow: ellipsis; */
+	    text-align: center!important;
+	    width:50px;
+	}
+</style>
+</head>
+<body class="overflow-hidden">
+	<div  class="wrapper preload no-left">
+		<ul class="breadcrumb">
+			<li><span class="primary-font"><i class="icon-home"></i></span>统计报表</li>
+			<li>SKU与部门对应关系表</li>
+		</ul>
+	</div>
+	<div class="main-container ">
+		<div class="padding-md">
+			<!-- 搜索栏 -->
+			<div class="form-inline no-margin" id="queryForm">
+		        <div class="fun-btn">
+	        		<button id="importButton" role:secResName="center_sku_depart_relation_import" class="btn btn-blue" onclick="importExcel()">导入</button>
+                 	<form class="form-inline no-margin" name="uploadForm" id="uploadForm" method="post"
+					  enctype="multipart/form-data">
+						<!-- <input type="hidden" class="refundsId" name="refundsId" /> -->
+						<input type="file" onchange="importDelivery()" name="file" id="file" class="timage" />
+					</form>
+	        	</div>
+	    	</div>
+	    	<form class="form-inline no-margin" id='queryForm2'>
+	    		<div class="smart-widget-inner product_info">
+					<div class="search-form-div">
+						<div class="search_l">
+							<div class="form-group">
+								<input type="text" id="sku" name="sku" class="form-control" placeholder="输入sku" />
+							</div>
+							<div class="form-group">事业部
+								<select id="dept" class="selectpicker show-tick form-control" multiple="multiple" data-live-search="true">
+									<option value='-1' selected='selected'>全部</option>
+									<option th:each="depart:${departList}" th:value="${depart.id}" th:text="${depart.name}"></option>
+								</select>
+							</div>
+						</div>
+						<div class="search_r">
+							<button type="button" class="btn btn-success marginTB-xs" onclick="searchResult()">搜索</button>
+							<img class="resetbutton" src="/images/icon_Advanced-search.png" onclick="searchReset()" />
+						</div>
+					</div>
+				
+					<table id="skuDepartRelation" class="table-scroll table table-hover"></table>
+				</div>
+	    	</form>
+			
+		</div>
+	</div>
+	<script th:src="@{'/js/common_business_oper/common_business_oper.js?v='+${version}}"></script>
+	<script th:src="@{'/js/centerstock/centerSkuDepartRelation.js?v='+${version}}"></script>
+</body>
+</html>

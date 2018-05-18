@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml" xmlns:th="://.thymeleaf.org"> 
+<head>
+    <title>Report测试首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <meta name="ctx" th:content="@{/}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+     <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="userId" th:content="${user.userId}"/>
+    <meta name="ncUrl" th:content="${ncUrl}"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{'/bootstrap/css/bootstrap.min.css?v='+${version}}" />
+    <link rel="stylesheet" th:href="@{'/css/bootstrap-submenu.min.css?v='+${version}}" />
+    <link rel="stylesheet" th:href="@{'/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css?v='+${version}}" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{'/css/font-awesome.min.css?v='+${version}}"/>
+    <!-- Flyersearch css -->
+    <!-- ionicons -->
+    <link rel="stylesheet" th:href="@{'/css/ionicons.min.css?v='+${version}}"/>
+
+    <!-- Morris -->
+    <link rel="stylesheet" th:href="@{'/css/morris.css?v='+${version}}"/>
+
+    <!-- Animate -->
+    <!-- <link rel="stylesheet" th:href="@{'/css/animate.min.css?v='+${version}}"/> -->
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{'/css/owl.carousel.min.css?v='+${version}}"/>
+    <link rel="stylesheet" th:href="@{'/css/owl.theme.default.min.css?v='+${version}}"/>
+
+    
+    <link rel="stylesheet" th:href="@{'/bootstrap-table/css/bootstrap-table.css?v='+${version}}"/>
+
+    <link rel="stylesheet" th:href="@{'/css/jquery.jgrowl.min.css?v='+${version}}" />
+
+    <link rel="stylesheet" th:href="@{'/css/common.css?v='+${version}}" />
+    
+    <link rel="stylesheet" th:href="@{'/bootstrap-select/css/bootstrap-select.min.css?v='+${version}}" />
+    <link rel="stylesheet" th:href="@{'/css/demo-slideshow.css?v='+${version}}"/>
+     <link rel="stylesheet" th:href="@{'/css/custom.css?v='+${version}}" />
+     <!-- Simplify -->
+    <link rel="stylesheet" th:href="@{'/css/simplify.min.css?v='+${version}}"/>
+    <!-- New css -->
+    <link rel="stylesheet" th:href="@{'/css/public.css?v='+${version}}"/>
+    <link rel="stylesheet" th:href="@{'/css/pop.css?v='+${version}}"/>
+    <link  rel="stylesheet" th:href="@{'/css/modules/flyer.all.css?v='+${version}}"/>
+    <link  rel="stylesheet" th:href="@{'/css/modules/flyer.extend.css?v='+${version}}"/>
+    <link rel="stylesheet" th:href="@{'/css/New.css?v='+${version}}"/>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- Jquery -->
+    <script th:src="@{'/js/jquery-1.11.1.min.js?v='+${version}}"></script>
+	<script th:src="@{'/js/common/cycle.min.js?v='+${version}}"></script>
+    <!-- Bootstrap -->
+    <script th:src="@{'/bootstrap/js/bootstrap.min.js?v='+${version}}"></script>
+    <script th:src="@{'/js/bootstrap-hover-dropdown.min.js?v='+${version}}"></script>
+    <script th:src="@{'/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?v='+${version}}"></script>
+    <script th:src="@{'/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js?v='+${version}}"></script>
+    <!-- New js -->
+
+    <!-- Flot -->
+    <script th:src="@{'/js/jquery.flot.min.js?v='+${version}}"></script>
+    <!-- ui -->
+    <script th:src="@{'/js/jquery-ui.min.js?v='+${version}}"></script>
+
+    <!-- Slimscroll -->
+    <script th:src="@{'/js/jquery.slimscroll.min.js?v='+${version}}"></script>
+
+    <!-- Morris -->
+   <!--  <script th:src="@{'/js/rapheal.min.js?v='+${version}}"></script>
+    <script th:src="@{'/js/morris.min.js?v='+${version}}"></script> -->
+
+    <script th:src="@{'/js/jquery.jgrowl.min.js?v='+${version}}"></script>
+
+    <!-- Sparkline -->
+    <!-- <script th:src="@{'/js/sparkline.min.js?v='+${version}}"></script> -->
+
+    <!-- Popup Overlay -->
+    <script th:src="@{'/js/jquery.popupoverlay.min.js?v='+${version}}"></script>
+
+    <!-- Easy Pie Chart -->
+    <script th:src="@{'/js/jquery.easypiechart.min.js?v='+${version}}"></script>
+
+    <!-- Sortable -->
+    <script
+            th:src="@{'/js/uncompressed/jquery.sortable.js?v='+${version}}"></script>
+
+    <!-- Owl Carousel -->
+    <!-- <script th:src="@{'/js/owl.carousel.min.js?v='+${version}}"></script -->
+
+    <!-- Modernizr -->
+    <script th:src="@{'/js/modernizr.min.js?v='+${version}}"></script>
+    
+    <script th:src="@{'/bootstrap-select/js/bootstrap-select.min.js?v='+${version}}"></script>
+    <!-- <script th:src="@{'/js/jquery.cycle2.min.js?v='+${version}}"></script> -->
+    <!-- <script th:src="@{'/js/jquery.cycle2.swipe.min.js?v='+${version}}"></script> -->
+
+    <!-- util js -->
+    <script th:src="@{'/js/common/commonUtilNew.js?v='+${version}}"></script>
+    <script th:src="@{'/js/common/dateformat.js?v='+${version}}"></script>
+    <script th:src="@{'/js/jquery-html5Validate-min.js?v='+${version}}"></script>
+    <script th:src="@{'/js/common/main.js?v='+${version}}"></script>
+      <!-- stickytable  -->
+     <!-- trafficAnalysis -->
+    <script th:src="@{'/js/common/trafficAnalysis.js?v='+${version}}"></script>
+    <script th:src="@{'/bootstrap-table/js/bootstrap-table-ext.js?v='+${version}}"></script>
+    <script th:src="@{'/bootstrap-table/js/bootstrap-table-zh-CN.min.js?v='+${version}}"></script>
+    <script th:src="@{'/js/modules/flyer.all.js?v='+${version}}"></script>
+    <script th:src="@{'/js/modules/flyer.extend.js?v='+${version}}"></script>
+    <!-- 样式  -->
+    <style type="text/css">
+     body {font-family: Microsoft YaHei;}
+      .security_role_class {
+            display: none;
+        }
+     
+    </style>
+</head>
+<body class="overflow-hidden">
+
+<!-- /wrapper -->
+<a href="#" class="scroll-to-top hidden-print"><img th:src="@{'/images/new-vision/icon_Back-to-top.png?v='+${version}}"/></a>
+<a href="javascript:void(0)" onclick="fullScreen()" class="full-screen-switch-btn"></a>
+        
+
+<!-- Simplify -->
+<script th:src="@{'/js/simplify/simplify.js?v='+${version}}"></script>
+<SCRIPT type="text/javascript">
+	 _ctx = $("meta[name='ctx']").attr("content");
+	 token = $("meta[name='_csrf']").attr("content");
+	 header = $("meta[name='_csrf_header']").attr("content");
+	 userId = $("meta[name='userId']").attr("content");
+	 ncUrl = $("meta[name='ncUrl']").attr("content");
+</SCRIPT>
+</body>
+</html>

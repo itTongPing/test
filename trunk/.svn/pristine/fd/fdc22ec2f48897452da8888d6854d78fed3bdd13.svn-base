@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aukey.report.mapper.StorageReportMapper">
+
+  <resultMap id="BaseResultMap" type="com.aukey.report.domain.StorageReport">
+   	<id column="storage_number"  property="storageNumber" />
+    <result column="quality_inspection_number"  property="qualityInspectionNumber" />
+    <result column="purchase_number"  property="purchaseNumber" />
+    <result column="supplier_id"  property="supplierId" />
+    <result column="Inspector"  property="inspector" />
+    <result column="warehouse_id"  property="warehouseId" />
+    <result column="muWarehouseName"  property="muWarehouseName" />
+    <result column="nondefective_number"  property="nondefectiveNumber" />
+    <result column="rejects_number"  property="rejectsNumber" />
+    <result column="spare_parts_number"  property="sparePartsNumber" />
+    <result column="storage_location_code"  property="storageLocationCode" />
+    <result column="create_user"  property="createUser" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="sku_code"  property="skuCode" />
+    <result column="skuname"  property="skuName" />
+    <result column="type"  property="type" />
+    <result column="corporation_id"  property="corporationId" />
+    <result column="corporation_name"  property="corporationName" />
+    <result column="transport_type"  property="transportType" />
+    <result column="transport_type_name" property="transportTypeName" />
+    <result column="is_tax"  property="isTax" />
+    <result column="is_tax_name"  property="isTaxName" />
+    <result column="requsername"  property="reqUserName" />
+    <result column="salename"  property="saleName" />
+    <result column="deptname"  property="deptName" />
+    <result column="stockname"  property="stockname" />
+    <result column="supplier_name"  property="supplier_name" />
+    <result column="tax_unit_price"  property="tax_unit_price" />
+    <result column="no_tax_price"  property="no_tax_price" />
+  </resultMap>
+  
+  <select id="selectList" parameterType="map" resultMap="BaseResultMap">
+  	select 
+  		storage_number,
+		quality_inspection_number,
+		purchase_number,
+		supplier_id,
+		Inspector,
+		warehouse_id,
+		muWarehouseName,
+		nondefective_number,
+		rejects_number,
+		spare_parts_number,
+		storage_location_code,
+		create_user,
+		create_date,
+		sku_code,
+		skuname,
+		type,
+		corporation_id,
+		corporation_name,
+		transport_type,
+		transport_type_name,
+		is_tax,
+		is_tax_name,
+		reqUserName,
+		saleName,
+		deptName,
+		stockname,
+		supplier_name ,
+ 		tax_unit_price ,
+ 		no_tax_price,
+ 		currency
+  	from aukey_report.storage_report s 
+  	 where 1=1
+	 
+	 <if test='department != null and department != ""'>
+			 and ${department}
+	 </if>
+	 
+  	 <if test='saleName != null and saleName != ""'>
+			 and ${saleName} 
+			
+	 </if>
+  	 
+  	 <if test='stockIds != null and stockIds.length > 0'>
+			 and s.stock_id IN	
+			 <foreach collection="stockIds" index="index" item="item" open="("
+                         separator="," close=")">
+                    #{item}
+             </foreach>
+	</if>
+  	<if test='corporationIds != null and corporationIds.length > 0'>
+			 and s.corporation_id IN	
+			 <foreach collection="corporationIds" index="index" item="item" open="("
+                         separator="," close=")">
+                    #{item}
+             </foreach>
+	</if>
+	<if test='createDateStart != null and createDateStart != "" '>
+		and s.create_date &gt;= '${createDateStart}'
+	</if>
+	<if test='createDateEnd != null and createDateEnd != "" '>
+		and s.create_date &lt;= '${createDateEnd}'
+	</if>
+	<if test='transportType != null'>
+		and s.transport_type = ${transportType}
+	</if>
+	<if test='isTax != null'>
+		and s.is_tax = ${isTax}
+	</if>
+	<if test='warehouseIds != null and warehouseIds.length > 0'>
+			 and s.warehouse_id IN	
+			 <foreach collection="warehouseIds" index="index" item="item" open="("
+                         separator="," close=")">
+                    #{item}
+             </foreach>
+	</if>
+	
+	<if test='skuCodes != null and skuCodes.size() > 0 '>
+		and	 s.sku_code IN
+			<foreach collection="skuCodes" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='skuCode != null and skuCode != "" '>
+		and	 s.sku_code like CONCAT('%','${skuCode}','%' )
+	</if>
+	<if test='purchaseOrders != null and purchaseOrders.length > 0 '>
+		and s.purchase_number IN
+		<foreach collection="purchaseOrders" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='storageNumbers != null and storageNumbers.length > 0 '>
+		and s.storage_number IN
+		<foreach collection="storageNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='qualityInspectionNumbers != null and qualityInspectionNumbers.length > 0 '>
+		and s.quality_inspection_number IN
+		<foreach collection="qualityInspectionNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	
+	<if test='checkIds != null and checkIds.size > 0 '>
+			and s.storage_number IN
+			<foreach collection="checkIds" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='purchaseOrder != null and purchaseOrder != "" '>
+		  and  (s.purchase_number like CONCAT('%','${purchaseOrder}','%' ) 
+		  		or s.storage_number like CONCAT('%','${purchaseOrder}','%' )
+		  		or s.quality_inspection_number like CONCAT('%','${purchaseOrder}','%' ))
+	</if>
+	<if test='buyers != null and buyers.size > 0 '>
+			and s.reqUserName IN
+			<foreach collection="buyers" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='suppliers != null and suppliers.size > 0 '>
+			and s.supplier_name IN
+			<foreach collection="suppliers" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+
+	ORDER By s.create_date DESC
+
+	<if test="page !=null and limit != null">
+		limit #{page},#{limit}
+	</if>
+  </select>
+  
+  
+  
+  <select id="getTotalStorage" parameterType="map" resultType="int">
+  	select 
+  		count(1)
+  	from aukey_report.storage_report s 
+  	where 1=1
+  	
+  	  <if test='department != null and department != ""'>
+			 and  ${department}
+	 </if>
+	 
+  	 <if test='saleName != null and saleName != ""'>
+			 and ${saleName} 
+			
+	 </if>
+	 
+  	<if test='stockIds != null and stockIds.length > 0'>
+			 and s.stock_id IN	
+			 <foreach collection="stockIds" index="index" item="item" open="("
+                         separator="," close=")">
+                    #{item}
+             </foreach>
+	</if>
+  	<if test='corporationIds != null and corporationIds.length > 0'>
+			 and s.corporation_id IN	
+			 <foreach collection="corporationIds" index="index" item="item" open="("
+                         separator="," close=")">
+                    #{item}
+             </foreach>
+	</if>
+	<if test='createDateStart != null and createDateStart != "" '>
+		and s.create_date &gt;= '${createDateStart}'
+	</if>
+	<if test='createDateEnd != null and createDateEnd != "" '>
+		and s.create_date &lt;= '${createDateEnd}'
+	</if>
+	<if test='transportType != null'>
+		and s.transport_type = ${transportType}
+	</if>
+	<if test='isTax != null'>
+		and s.is_tax = ${isTax}
+	</if>
+	<if test='warehouseIds != null and warehouseIds.length > 0'>
+			 and s.warehouse_id IN	
+			 <foreach collection="warehouseIds" index="index" item="item" open="("
+                         separator="," close=")">
+                    #{item}
+             </foreach>
+	</if>
+	
+	<if test='skuCodes != null and skuCodes.size() > 0 '>
+		and	 s.sku_code IN
+			<foreach collection="skuCodes" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='skuCode != null and skuCode != "" '>
+		and	 s.sku_code like CONCAT('%','${skuCode}','%' )
+	</if>
+	<if test='purchaseOrders != null and purchaseOrders.length > 0 '>
+		and s.purchase_number IN
+		<foreach collection="purchaseOrders" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='storageNumbers != null and storageNumbers.length > 0 '>
+		and s.storage_number IN
+		<foreach collection="storageNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	<if test='qualityInspectionNumbers != null and qualityInspectionNumbers.length > 0 '>
+		and s.quality_inspection_number IN
+		<foreach collection="qualityInspectionNumbers" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+	
+	<if test='checkIds != null and checkIds.size > 0 '>
+			and s.storage_number IN
+			<foreach collection="checkIds" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='purchaseOrder != null and purchaseOrder != "" '>
+		  and  (s.purchase_number like CONCAT('%','${purchaseOrder}','%' ) 
+		  		or s.storage_number like CONCAT('%','${purchaseOrder}','%' )
+		  		or s.quality_inspection_number like CONCAT('%','${purchaseOrder}','%' ))
+	</if>
+	<if test='buyers != null and buyers.size > 0 '>
+			and s.reqUserName IN
+			<foreach collection="buyers" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+	<if test='suppliers != null and suppliers.size > 0 '>
+			and s.supplier_name IN
+			<foreach collection="suppliers" index="index" item="item" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+	</if>
+  </select>
+  
+  
+  	<resultMap id="BaseResultMap2" type="com.aukey.report.domain.StarSign">
+		<!-- WARNING - @mbggenerated This element is automatically generated by 
+			MyBatis Generator, do not modify. This element was generated on Wed Mar 01 
+			17:03:56 CST 2017. -->
+		<id column="sign_type" property="signType" jdbcType="CHAR" />
+		<id column="type_id" property="typeId" jdbcType="VARCHAR" />
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="sign_time" property="signTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+  
+  	<select id="findAllByUserIdAndUserType" resultMap="BaseResultMap2"
+		parameterType="map">
+		
+		select sign_type, type_id, user_id, sign_time
+		from supply_sign.star_sign
+		<where>
+			
+			<if test='signType != null and signType != "" '>
+				and sign_type = ${signType}
+			</if>
+			
+			<if test='type_ids != null and type_ids.size()>0 '>
+				and type_id IN
+				<foreach collection="type_ids" index="index" item="item" open="("
+						separator="," close=")">
+						#{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<select id="selectUserList" resultType="java.util.HashMap">
+	    select user_id as userId, account, email, name from cas.user where user_id in 
+	    <foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>	 
+		ORDER BY CONVERT( name USING gbk ) COLLATE gbk_chinese_ci ASC
+	</select>
+	
+	<select id="selectStorageBytype" parameterType="map" resultType="java.util.HashMap">
+	
+		SELECT name as warehouse_name,stock_id from product_ms.stock where 1=1
+		
+		<if test='stock_types != null and stock_types.size()>0'>
+				and stock_type IN
+				<foreach collection="stock_types" index="index" item="item" open="("
+						separator="," close=")">
+						#{item}
+				</foreach>
+	    </if>
+		and  func_state = '1' and data_state = '1'
+	</select>
+	
+	<select id="selectStorageBytype2" parameterType="map" resultType="java.util.HashMap">
+	
+		SELECT name as warehouse_name,stock_id from product_ms.stock where 1=1
+		
+		<if test='stock_types != null and stock_types.size()>0'>
+				and stock_type IN
+				<foreach collection="stock_types" index="index" item="item" open="("
+						separator="," close=")">
+						#{item}
+				</foreach>
+	    </if>
+		and  func_state = '1' and data_state = '1'<!--  and stock_id in(8, 70, 71, 72, 73, 93, 94, 139, 140,13,12,141) -->
+	</select>
+  
+</mapper>

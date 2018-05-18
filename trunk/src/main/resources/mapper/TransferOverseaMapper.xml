@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aukey.report.mapper.TransferOverseaMapper">
+	<insert id="saveTransferOversea" parameterType="java.util.List">
+		
+		INSERT INTO transfer_oversea_report (
+												shipping_date,
+												warehouse_id,
+												sku_code,
+												operate_inner,
+												shipment_code,
+												shipment_code_old,
+												ship_mark,
+												ship_quantity,
+												box_count,
+												boxs,
+												box_weight,
+												length,
+												width,
+												height,
+												ship_address,
+												fba_code,
+												amazon_account,
+												creator,
+												reference_id,
+												receiver,
+												country_code,
+												province,
+												city,
+												address1,
+												postcode,
+												country_name,
+												shipment_id,
+												fnsku,
+												quantity_received,
+												file_name
+											
+											)
+											VALUES
+											<foreach collection ="list" item="info" index= "index" separator =",">
+												(
+												#{info.shippingDate},
+												#{info.warehouseId},
+												#{info.skuCode},
+												#{info.operateInner},
+												#{info.shipmentCode},
+												#{info.shipmentCodeOld},
+												#{info.shipMark},
+												#{info.shipQuantity},
+												#{info.boxCount},
+												#{info.boxs},
+												#{info.boxWeight},
+												#{info.length},
+												#{info.width},
+												#{info.height},
+												#{info.shipAddress},
+												#{info.fbaCode},
+												#{info.amazonAccount},
+												#{info.creator},
+												#{info.referenceId},
+												#{info.receiver},
+												#{info.countryCode},
+												#{info.province},
+												#{info.city},
+												#{info.address1},
+												#{info.postCode},
+												#{info.countryName},
+												#{info.shipmentId},
+												#{info.fnSku},
+												#{info.quantityReceived},
+												#{info.fileName})
+												</foreach>
+		
+			
+	</insert>
+	
+	<delete id="delExistsFile">
+		DELETE
+		FROM
+			aukey_report.transfer_oversea_report
+		WHERE
+			file_name = #{fileName}
+	</delete>
+	
+	<select id="selectTransferOverseaInfo" parameterType="map" resultType="com.aukey.report.domain.transferExportInfo"> 
+		 SELECT
+					t.warehouse_id AS warehouseIds,
+					t.shipment_id AS shipmentId,
+					t.fnsku AS fnSku,
+					t.sku_code AS skuCode,
+					t.ship_quantity AS shipQuantity,
+					IFNULL(t.ship_quantity,0)-IFNULL(t2.receiveQuantity,0) AS inWayQuantity,
+					IFNULL(t2.receiveQuantity,0) AS receiveQuantity,
+					t.file_name AS fileName
+		FROM
+		(
+			SELECT
+				warehouse_id,
+				shipment_id,
+				fnsku,
+				sku_code,
+				SUM(ship_quantity) AS ship_quantity,
+				GROUP_CONCAT(file_name) AS file_name
+			FROM
+				aukey_report.transfer_oversea_report
+				WHERE 1=1
+				<if test="warehouseIds!=null and warehouseIds.size()!=0">
+			 	AND warehouse_id in 
+			 	<foreach collection="warehouseIds" index="index" item="item" open="(" close=")" separator=",">
+			 	#{item}
+			 	</foreach>
+			 </if>
+			 <if test="skus!=null and skus.size()!=0">
+			 	AND sku_code in
+			 	<foreach collection="skus" index="index" item="item" open="(" close=")" separator=",">
+			 	#{item}
+			 	</foreach>
+			 </if>
+			GROUP BY
+				warehouse_id,
+				shipment_id,
+				fnsku,
+				sku_code
+			<if test="pageNum!=null and limit!=null">
+				LIMIT #{pageNum},#{limit}
+			 </if>
+		) t LEFT JOIN (
+		SELECT
+			SUM(quantity) AS receiveQuantity,
+			fnsku,
+			fba_shipment_id
+		FROM
+			fba_stock.received_inventory
+		GROUP BY
+			fnsku,
+			fba_shipment_id 
+		)t2 ON t.shipment_id=t2.fba_shipment_id AND t.fnsku=t2.fnsku
+	</select>
+	
+	
+	<select id="count" parameterType="map" resultType="java.lang.Integer">
+		SELECT
+					COUNT(1) as total
+		FROM
+		(
+			SELECT
+				warehouse_id,
+				shipment_id,
+				fnsku,
+				sku_code,
+				SUM(ship_quantity) AS ship_quantity,
+				GROUP_CONCAT(file_name) AS file_name
+			FROM
+				aukey_report.transfer_oversea_report
+				WHERE 1=1
+				<if test="warehouseIds!=null and warehouseIds.size()!=0">
+			 	AND warehouse_id in 
+			 	<foreach collection="warehouseIds" index="index" item="item" open="(" close=")" separator=",">
+			 	#{item}
+			 	</foreach>
+			 </if>
+			 <if test="skus!=null and skus.size()!=0">
+			 	AND sku_code in
+			 	<foreach collection="skus" index="index" item="item" open="(" close=")" separator=",">
+			 	#{item}
+			 	</foreach>
+			 </if>
+			GROUP BY
+				warehouse_id,
+				shipment_id,
+				fnsku,
+				sku_code
+		) t LEFT JOIN (
+		SELECT
+			SUM(quantity) AS receiveQuantity,
+			fnsku,
+			fba_shipment_id
+		FROM
+			fba_stock.received_inventory
+		GROUP BY
+			fnsku,
+			fba_shipment_id 
+		)t2 ON t.shipment_id=t2.fba_shipment_id AND t.fnsku=t2.fnsku
+		
+	</select>
+	
+</mapper>

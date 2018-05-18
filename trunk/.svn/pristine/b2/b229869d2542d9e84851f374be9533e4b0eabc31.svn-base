@@ -1,0 +1,81 @@
+#spring-data
+spring.datasource.url=jdbc:mysql://10.1.1.86:3306/aukey_report?useUnicode=true&characterEncoding=utf8
+spring.datasource.username=aukey_report
+spring.datasource.password=aukey_report
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+spring.datasource.initialize=false
+spring.datasource.test-while-idle=true
+spring.datasource.test-on-borrow=true
+spring.datasource.validation-query=SELECT 1
+
+spring.jackson.time-zone=GMT+8
+spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
+
+
+#spring-mail
+spring.mail.host=smtp.exmail.qq.com
+spring.mail.username=AukeyIT@aukeys.com
+spring.mail.password=Aukey2016.
+spring.mail.url=http://www.aukeyit.com
+fba.smb.file.zip.path=smb://aukeyit:aukeyit2016@10.1.1.186/files/fba/zip/
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=false
+spring.mail.properties.mail.smtp.starttls.required=false
+
+create.smallBagMail.mail=wangdan@aukeys.com
+create.3cMail.mail=wangye@aukeys.com
+create.ywMail.mail=ywSales@aukeys.com
+
+
+#spring-application
+spring.application.name=aukey-report
+server.port=8088
+eureka.client.serviceUrl.defaultZone=http://eureka.qa.aukeyit.com/eureka/
+mybatis.mapper-locations=classpath*:mapper/**/*.xml
+
+spring.thymeleaf.cache =false
+nc.server.url=http://nc.qa.aukeyit.com
+#report
+inventory.api.url=http://product.qa.aukeyit.com//stock/get_allwarehouse_info?funcState=1
+transfer.api.url=http://product.qa.aukeyit.com//stock/get_allwarehouse_info?stockType=3,11
+legaler.api.url=http://supplier-new.qa.aukeyit.com/api/get_all_corporation_for_map
+all.department.api.url=http://cas.qa.aukeyit.com/cas_api/work_flow/gain_all_group_by_category_code?code=SALES
+department.api.url=http://cas.qa.aukeyit.com/cas_api/work_flow/gain_route_group_info_by_group_names
+
+purchase.department.api.url=http://cas.qa.aukeyit.com/cas_api/work_flow/gain_all_group_by_category_code?code=PURCHASE
+purchase.department.sales.api.url=http://cas.qa.aukeyit.com/cas_api/work_flow/gain_all_group_by_category_code?code=SALES
+management.security.enabled=false
+spring.boot.admin.url=http://10.1.1.183:8866
+spring.boot.admin.client.service-url=http://report-bi.qa.aukeyit.com
+#redis no use but  config for jmx montior
+spring.redis.host=10.1.1.58
+spring.redis.port=6379
+string.version.number=1.1.00031
+
+String.cas.relevance.group.users.url=http://cas.qa.aukeyit.com/cas_api/work_flow/gain_all_sales_person_by_connection_group_ids
+String.cas.kai.url=http://cas.qa.aukeyit.com/cas_api/work_flow/gain_backstep_route_group_info_by_group_ids
+
+String.cas.saleDept.url=http://cas.qa.aukeyit.com/org/querySaleDept
+
+product.warehouse.url=http://product.qa.aukeyit.com/stock/get_allwarehouse_info
+cas.userIdInfo.url = http://cas.qa.aukeyit.com/cas_api/gain_user_info_by_user_ids
+#使用模糊查询，检索供应商信息
+String.gain.alias.supplier=http://supplier-new.qa.aukeyit.com/api/get_like_supplier_info
+turnDeliPlan.querySock.url = http://supply-chain.qa.aukeyit.com/turnSearch/querySock
+String.stock.info.url=http://product.qa.aukeyit.com/stock/get_allwarehouse_info
+String.chain.demand = http://supply-chain.qa.aukeyit.com
+String.aliaslike.url=http://supply-invoice.qa.aukeyit.com/invoice/gain_supplier_select_data_by_alias_copy
+
+
+#****************付款执行报表begin**********************
+#Get supplier name by id, when the id more than one then split by ','
+String.get.supplier.name.by.supplierId=http://supplier-new.qa.aukeyit.com/supplierApiInfo/getSupplierInfoAndCorporation
+#Get corporation name by id, when the id more than one then split by ','
+String.get.corporation.name.by.id=http://supplier-new.qa.aukeyit.com/supplierApiInfo/getAliasList
+#Get all corporation map
+String.manage.corporations.url=http://supplier-new.qa.aukeyit.com/api/get_all_corporation_for_map
+cas.uri=http://cas.qa.aukeyit.com/
+#使用模糊查询，检索供应商信息
+String.manage.searchsupplier.url=http://supplier-new.qa.aukeyit.com/supplierApiInfo/getSingleSupplierId
+String.product.amazon=http://product.qa.aukeyit.com/account/getAllAccountInfo

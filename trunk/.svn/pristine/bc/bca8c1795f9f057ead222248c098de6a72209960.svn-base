@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml" xmlns:th="://.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>库龄报表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+   	<head th:include="decorators/tags/main" />
+    <head th:include="decorators/tags/menuBaiyi" />
+    <style>
+        .fixed-table-toolbar .columns {
+            top: 76px!important;
+        }
+    </style>
+</head>
+<body class="overflow-hidden" >
+<div class="wrapper preload no-left">
+    <ul class="breadcrumb">
+        <li><span class="primary-font"><i class="icon-home"></i></span>供应链报表</li>
+        <li>库龄报表</li>
+    </ul>
+    <div class="main-container ">
+        <div class="padding-md">
+        <!-- 搜索栏 -->
+        <form class="form-inline no-margin" id="queryForm" action = '/report/stock/age/export' method = 'get'>
+	        <div class="fun-btn">
+	        	<button  type="submit" class="btn btn-blue">导出</button>
+	        </div>
+            <div class="smart-widget-inner product_info">
+                <div class="search-form-div">
+                        <div class="search_l">
+                        	<!-- sku -->
+                            <div class="form-group">SKU
+                                <input type="text" id="sku" name="sku" class="form-control" placeholder="输入SKU查询"/>
+                            </div>
+                            <!-- 仓库 -->
+                        	<div class="form-group" style="margin:5px 0">仓库
+                                <select class="selectpicker show-tick form-control" multiple="multiple"
+                                        id="warehouses" data-live-search="false" name = 'warehouses'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option th:each="warehouses :${warehouses}"
+                                            th:value="${warehouses.stock_id}"
+                                            th:text="${warehouses.warehouse_name}"></option>
+                                </select>
+                            </div>
+                            <!-- 法人主体 -->
+                        	<div class="form-group" style="margin:5px 0">法人主体
+                                <select id="legaler" class="selectpicker show-tick form-control" multiple="multiple"
+                                        data-live-search="false" name = 'legaler'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option th:each="legaler :${legalers}"
+                                            th:text="${legaler}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="search_r">
+                            <button type="button" class="btn btn-success marginTB-xs" onclick="searchResult()">搜索</button>
+                            <img class="resetbutton" src="/images/icon_Advanced-search.png" onclick="searchReset()" />
+                        </div>
+                </div>
+                <!-- 表格 -->
+                <table id="table01" class = 'table-scroll'
+                data-toggle="table"
+                data-url = '/report/stock/age/search'
+                data-query-params="query_params"
+                data-id-field="sku"
+                data-unique-id="sku"
+                data-pagination="true"
+                data-side-pagination="server"
+                data-page-size="20"
+                data-page-list="[20, 50, 100, 200]"
+                >
+                <thead>
+                    <th data-field = 'departName'>事业部</th>
+                	<th data-field = 'sku'>SKU</th>
+                	<th data-field = 'sku_name'>SKU名称</th>
+                	<th data-field = 'category_name'>品类名称</th>
+                	<th data-field = 'warehouse_name'>仓库名称</th>
+                	<th data-field = 'stock_count'>库存数量</th>
+                	<th data-field = 'price'>标准单价</th>
+                	<th data-field = 'money'>金额</th>
+                	<th data-field = 'legaler_name'>法人主体</th>
+                	<th data-field = 'age_0_15'>0-15天库龄</th>
+                	<th data-field = 'age_15_30'>16-30天库龄</th>
+                	<th data-field = 'age_30_60'>31-60天库龄</th>
+                	<th data-field = 'age_60_90'>61-90天库龄</th>
+                	<th data-field = 'age_90_120'>91-120天库龄</th>
+                	<th data-field = 'age_120_180'>121-180天库龄</th>
+                	<th data-field = 'age_180_270'>181-270天库龄</th>
+                	<th data-field = 'age_270_365'>271-365天库龄</th>
+                	<th data-field = 'age_365_730'>366-730天库龄</th>
+                	<th data-field = 'age_731'>731天以上库龄</th>
+                </thead>
+                </table>
+            </div><!-- ./smart-widget-inner -->
+		</form>
+        </div><!-- ./padding-md -->
+    </div><!-- /main-container -->
+    <!-- 引入页脚 -->
+    <head th:include="decorators/tags/footer_mini"/>
+</div>
+
+<!-- 当前页面脚本 -->
+<script th:src="@{'/js/stockAgeReport.js?v='+${version}}"></script>
+</body>
+</html>

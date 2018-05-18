@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml" xmlns:th="://.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>商品收发明细</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+   	<head th:include="decorators/tags/main" />
+    <head th:include="decorators/tags/menuBaiyi" />
+    <style> 
+	.title_class{
+	    display: block;
+	    width: 390px;
+	    overflow: hidden;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	}
+</style>
+</head>
+<body class="overflow-hidden" >
+<div class="wrapper preload no-left">
+    <ul class="breadcrumb">
+        <li><span class="primary-font"><i class="icon-home"></i></span>统计报表</li>
+        <li>商品收发明细报表</li>
+        <li>商品收发明细</li>
+    </ul>
+    <div class="main-container ">
+        <div class="padding-md">
+        <!-- 搜索栏 -->
+        <form class="form-inline no-margin" id="queryForm" onkeydown="if(event.keyCode==13){return false;}" action = '/report/good/export' method = 'get' >
+	        <div class="fun-btn">
+	        	<button  type="button"  onclick="confirmExportShow(this)" role:secResName="report_reportgood_export" id="exoprtButton"  class="btn btn-blue">导出</button>
+	        </div>
+            <div class="smart-widget-inner product_info">
+                <div class="search-form-div">
+                        <div class="search_l">
+                        	<!-- 时间 -->
+                            <div class="form-group">日期
+                                <input size="16" type="text" id="from_date" name="from_date" value="" placeholder="开始时间" class="form-control form_datetime"/>
+                                <input size="16" type="text" id="to_date" name="to_date" value="" placeholder="结束时间" class="form-control form_datetime"/>
+                            </div>
+                            <!-- sku -->
+                            <div class="form-group">
+                                <input type="text" id="sku" name="sku" class="form-control" placeholder="输入sku查询"/>
+                            </div>
+                            
+                            <!-- 法人主体 -->
+                            <div class="form-group" style="margin:5px 0">法人主体
+                                <select id="legaler" class="selectpicker show-tick form-control" multiple="multiple"
+                                        data-live-search="true" name = 'legaler'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option th:each="legaler :${legalers}"
+                                            th:text="${legaler}"></option>
+                                </select>
+                            </div>
+                            
+                            <!-- 高级搜索 -->
+                            <div class="btn-group marginTB-xs advanced-search" style="float: none; display: inline-block;margin-left:12px;">
+                                <a  type="button" data-toggle="dropdown" onclick="searchH()" class="uperSearch"> 高级搜索<img src="/images/new-vision/nav_right_user-name_arrow.png" /></a>
+                            </div>
+                        </div>
+                        <div class="search_r">
+                            <button id="sel-button" type="button" class="btn btn-success marginTB-xs" onclick="searchResult()">搜索</button>
+                            <img class="resetbutton" src="/images/icon_Advanced-search.png" onclick="searchReset()" />
+                        </div>
+                        <ul class="dropdown-menu" role="menu" id="searchH" style="display: none;">
+                        	<!-- 往来单位 -->
+                            <div class="form-group" role:secResName="report_reportgood_intercourse_view"  style="margin:5px 0">
+                            	往来单位	
+	                            <input type="text" id="organization" name="organization" class="form-control" placeholder="输入往来单位查询"/>
+                           	</div>
+                        	<!-- 单据编号 -->
+                            <div class="form-group" style="margin:5px 0">单据编号
+	                            <input type="text" id="receipt_no" name="receipt_no" class="form-control" placeholder="输入单据编号查询"/>
+                           	</div>
+                           	<!-- 仓库 -->
+                            <div class="form-group" style="margin:5px 0">仓库
+                                <select class="selectpicker show-tick form-control" multiple="multiple"
+                                        id="warehouse" data-live-search="true" name = 'warehouse'>
+                                    <option value='-1' selected='true'>全部</option>
+                                    <option th:each="inventory :${inventorys}"
+	                                        th:value="${inventory.stock_id}"
+	                                        th:text="${inventory.warehouse_name}"></option>
+                                </select>
+                            </div>
+                        </ul>
+                    
+                </div>
+                <!-- 表格 -->
+                <table id="table01" class = 'table-scroll table-responsive' >
+                	 <thead class="tableThead">
+                    	<th data-field = 'sku'>sku</th>
+                    	<th data-field = 'sku_name' data-width='400'  data-formatter = 'formatterSKU' >sku名称</th>
+						<th data-field = 'document_number' >单据编号</th>
+						<th data-field = 'document_date'>单据日期</th>
+						<th data-field = 'business_type'>业务类型</th>
+						<th data-field = 'is_tax' data-formatter = 'formatIsTax'>含税</th>
+						<th data-field = 'legaler_name' >法人主体</th>
+						<th data-field = 'intercourse_unit_name' role:secResName="report_reportgood_intercourse_view" data-formatter = 'formatNOTnull' >往来单位</th>
+                   		<th data-field = 'warehouse_name' >仓库</th>
+                   		<th data-field = 'quantity' >数量</th>
+                   		<th data-field = 'price' role:secResName="report_reportgood_money_view" data-formatter = 'formatNOTnull' >单价</th>
+                   		<th data-field = 'cost' role:secResName="report_reportgood_money_view" data-formatter = 'formatNOTnull'>金额</th>
+                   		<th data-field = 'currency' >币别</th>
+                   		<th data-field = 'creator_name' >制单人</th>
+                   		<th data-field = 'department_name' >需求部门</th>
+                   		<th data-field = 'transport_type' data-formatter = 'formattransportType' >运输方式</th>
+                    </thead>
+                </table>
+            </div><!-- ./smart-widget-inner -->
+		</form>
+        </div><!-- ./padding-md -->
+    </div><!-- /main-container -->
+    <!-- 引入页脚 -->
+    <head th:include="decorators/tags/footer_mini"/>
+</div>
+<!-- 导出模态框 -->
+	<div class="modal fade bs-example-modal-sm" id="exportExcel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" >
+	  <div class="modal-dialog modal-sm" role="document" style="min-width: auto !important;">
+	    <div class="modal-content" id="exportContent">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">导出</h4>
+	      </div>
+		  <div class="modal-body">
+			 <div class="confirm_txt" style="line-height: 20px;height: 22px;">导出的数据量过大，系统将以邮件方式发送，是否确定导出</div>
+		  </div>
+	      <div class="modal-footer">
+	        <button type="button" onclick="exportExcel()" class="btn marginTB-xs btn-primary">确认</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<script>
+
+
+formatterSKU = function(value){
+	   
+	       return value == null ? '-' : '<span class="text-left title_class left" title="' + value + '">' + value + '</span>';
+}
+
+formattransportType = function(value){
+	if(value == 1){
+ 	   return '海运'
+    }else if(value == 0){
+ 	   return '空运';
+    }else{
+ 	   return '-';
+    }
+}
+formatNOTnull = function(value){
+	return (value==null?'-':value);
+}
+formatIsTax = function(value){
+	if(value == 0){
+		return '否';
+	}else{
+		return '是';
+	}
+}
+
+$(document).keyup(function(event){
+    var event = event || window.event; // 获取event对象
+    var keyCode = event.keyCode || event.which; //获取keyCode
+    //按enter键触发表格搜索
+    if (keyCode == 13){
+        $('#sel-button').trigger('click');
+    }
+});
+//日历插件配置
+var aaa = new Date();
+aaa.setMonth(new Date().getMonth()-1);
+var nowtime = new Date();
+$("#from_date").datetimepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    language: 'zh-CN',
+    minView: '2',
+    toggleActive: false,
+    zIndexOffset: 1,
+    endDate: nowtime
+}).datetimepicker('setDate',aaa);
+$("#to_date").datetimepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    language: 'zh-CN',
+    minView: '2',
+    toggleActive: false,
+    zIndexOffset: 1
+}).datetimepicker('setDate',nowtime)
+
+/* flyer.date($("#from_date"),{
+    isTime: false,
+	format: "yyyy-mm-dd"
+});
+flyer.date($("#to_date"),{
+    isTime: false,
+	format: "yyyy-mm-dd"
+}) */
+</script>
+<!-- 当前页面脚本 -->
+<script th:src="@{'/js/goods_send_recieve_detail.js?v='+${version}}"></script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="://.w3.org/1999/xhtml"
+	xmlns:th="://.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>采购预警报表</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<head th:include="decorators/tags/main" />
+<link rel="stylesheet" href="/css/require-form.css" />
+<link  rel="stylesheet" th:href="@{'/css/modules/flyer.all.css?v='+${version}}"/>
+<link  rel="stylesheet" th:href="@{'/css/modules/flyer.extend.css?v='+${version}}"/>
+	<style>
+		.warehouse{
+			width:auto !important;
+			top:43px;
+			left:50px;
+			white-space:nowrap !important;
+		}
+		.skuNameWidth{
+		max-width:200px;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
+		}
+		#exportExcel{
+			margin:150px auto;
+			width: 350px;
+			height: 500px;
+		}
+		#exportContent{
+			width: 350px;
+		}
+		
+.bootstrap-table{
+    position:static !important;
+}
+.fixed-table-toolbar .columns{
+    position: absolute;
+    right: 137px;
+    top: 77px;
+}
+.fixed-table-toolbar .btn {
+    height: 36px;
+    width: 90px;
+}
+.fixed-table-toolbar .dropdown-menu{
+    right: -54px;
+    top: 34px;
+}
+	</style>
+<!-- 	<link rel="stylesheet" th:href="@{'/flyer/css/flyer.ui.css?v='+${version}}" /> -->
+<head th:include="decorators/tags/menuBaiyi" />
+<style>
+</style>
+</head>
+
+<body class="overflow-hidden">
+	<div class="wrapper preload no-left">
+		<ul class="breadcrumb">
+			<li><span class="primary-font"><i class="icon-home"></i></span>供应链报表</li>
+			<li>采购预警报表</li>
+		</ul>
+		<div class="main-container ">
+			<div class="padding-md">
+				<!-- 搜索栏 -->
+				<!-- <form class="form-inline no-margin" id="queryForm"
+					action='/report/PurchaseWarn/export' method='get'> -->
+					<div class="form-inline no-margin" id="queryForm">
+					<div class="fun-btn">
+	        			<button onclick="confirmExportShow(this)" id="exoprtButton" class="btn btn-blue">导出</button>
+	        		</div>
+	        		<!-- <div class="confirm" style="display: none; left: 112px; top: 81px; z-index: 100000000;">
+						<div class="confirm_txt" style="line-height: 20px;height: 22px;">导出的数据量过大，系统将以邮件方式发送，是否确定导出</div>
+						<span class="close_x" onclick="closeConfirm()">×</span>
+						<button type="button" onclick="exportExcel()" class="btn marginTB-xs" style="background:#f27068;margin-left:16px;margin-right:5px;color:#fff">确认</button>
+						<button type="button" onclick="closeConfirm()" class="btn marginTB-xs btn-primary" style="background:#f2cc3a9 !important;color:#fff">取消</button>
+					</div> -->
+					<div class="smart-widget-inner product_info">
+						<div class="search-form-div">
+
+							<div class="search_l">
+								<!-- 时间 -->
+								<div class="form-group ">
+									时间
+									<div class="btn-group btn_group">
+										<input size="16" type="text" id="from_date" name="from_date"
+											placeholder="开始时间" th:value="${starttime}"
+											class="form-control form_datetime "
+											data-date-format="yyyy-mm-dd" /> <input size="16" type="text"
+											id="to_date" name="to_date" value="" placeholder="结束时间"
+											class="form-control form_datetime " th:value="${nowtime}"
+											data-date-format="yyyy-mm-dd" />
+									</div>
+								</div>
+								<!-- sku -->
+								<div class="form-group">
+									<input type="text" id="sku" name="sku_code"
+										class="form-control" placeholder="输入sku" />
+									<input type="hidden" id="msg" th:value="${msg}"/>
+								</div>
+								<!-- 判断是否有欠货 -->
+								<div class="form-group">
+	                                <div class="inline-block vertical-top" style="line-height:41px;">
+	                                    		仅显示欠货
+	                                </div>
+	                                <div class="checkbox" style="top:13px;">
+	                                    <div class="custom-checkbox">
+	                                    	<form id='formCheck' class="form-inline no-margin" onsubmit="false" action="javascript:;">
+	                                        <input type="checkbox" id="checkBOX" class="form-control"/>
+	                                        <label for="checkBOX"> </label>
+	                                        </form>
+	                                    </div>
+	                                </div>
+                                </div>
+								<!-- 供应商 -->
+								<div class="form-group">
+									供应商 <input name="supplier_id" id="supplyAlias"
+										placeholder="请输入供应商检索" class="form-control"
+										th:value="${supplyAlias}" onkeyup="getStockList(this,event)"
+										onfocus="getStockList(this,event)" style="font-size: 14px;" />
+								</div>
+								
+								<!-- 高级搜索 -->
+								<div class="btn-group marginTB-xs advanced-search"
+									style="float: none; display: inline-block; margin-left: 12px;">
+									<a type="button" data-toggle="dropdown" onclick="searchH()"
+										class="uperSearch"> 高级搜索<img
+										src="/images/new-vision/nav_right_user-name_arrow.png" /></a>
+								</div>
+							</div>
+							<div class="search_r">
+								<button type="button" class="btn btn-success marginTB-xs"
+									onclick="searchResult()">搜索</button>
+								<img class="resetbutton" src="/images/icon_Advanced-search.png"
+									onclick="searchReset()" />
+							</div>
+							<ul class="dropdown-menu" role="menu" id="searchH"
+								style="display: none;">
+								<!-- 法人主体 -->
+								<div class="form-group" style="margin: 5px 0">
+									法人主体 <select id="legaler"
+										class="selectpicker show-tick form-control"
+										multiple="multiple" data-live-search="false" name='legaler_id'>
+										<option value='-1' selected='true'>全部</option>
+										<option th:each="legaler :${legalerName}" th:text="${legaler}"></option>
+									</select>
+								</div>
+								<!-- 采购单号 -->
+								<div class="form-group">
+									采购单号 <label class="sr-only"></label> <input type="text"
+										id="purchase_no" name="purchase_order_id" class="form-control"
+										placeholder="输入采购单号" />
+								</div>
+								<!-- 预计交货日期 -->
+								<div class="form-group ">
+									预计交货日期
+									<div class="btn-group btn_group">
+										<input size="16" type="text" id="before_from_date"
+											name="before_from_data" value="" placeholder="开始时间"
+											class="form-control form_datetime "
+											data-date-format="yyyy-mm-dd" /> <input size="16" type="text"
+											id="before_to_date" name="before_to_data" value=""
+											placeholder="结束时间" class="form-control form_datetime "
+											data-date-format="yyyy-mm-dd" />
+									</div>
+								</div>
+								<!-- 业务部门部门 -->
+								<div class="form-group" style="margin: 5px 0">
+									业务部门 <select class="selectpicker show-tick form-control"
+										multiple="multiple" id="department" data-live-search="false"
+										name='department'>
+										<option value='-1' selected='true'>全部</option>
+										<option th:each="departmentl :${department}"
+											th:value="${departmentl.groupId}"
+											th:text="${departmentl.groupName}"></option>
+									</select>
+								</div>
+							</ul>
+							
+						</div>
+						<!-- 表格 -->
+						<table id="tab_Warn" class="table-scroll table table-hover">
+						</table>
+					</div>
+					<!-- ./smart-widget-inner -->
+				</div>
+
+
+			</div>
+			<!-- ./padding-md -->
+			<!-- 点击目标仓库 -->
+			<div class="warehouse">
+            </div>
+
+		</div>
+		<!-- /main-container -->
+
+		<!-- 引入页脚 -->
+		<head th:include="decorators/tags/footer_mini" />
+	</div>
+	<!-- 导出模态框 -->
+	<div class="modal fade bs-example-modal-sm" id="exportExcel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content" id="exportContent">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">导出</h4>
+	      </div>
+		  <div class="modal-body">
+			 <div class="confirm_txt" style="line-height: 20px;height: 22px;">导出的数据量过大，系统将以邮件方式发送，是否确定导出</div>
+		  </div>
+	      <div class="modal-footer">
+	        <button type="button" onclick="exportExcel()" class="btn marginTB-xs btn-primary">确认</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- 导出模态框 -->
+	<!-- 当前页面脚本 -->
+	<input type="hidden" id="chainDemand"  th:value="${chainDemand}" />
+	<!-- <script th:src="@{/flyer/js/flyer.ui.searches.js}"></script> -->
+	<script th:src="@{'/js/purchaseWarn.js?v='+${version}}"></script>
+</body>
+</html>

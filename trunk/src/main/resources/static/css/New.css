@@ -1,0 +1,162 @@
+.nav-tabs.li_back_w>li.active>a,
+.nav-tabs.li_back_w>li.active>a:hover,
+.nav-tabs.li_back_w>li.active>a:focus,
+.nav-tabs>li.back_w.active>a,
+.nav-tabs>li.back_w.active>a:hover,
+.nav-tabs>li.back_w.active>a:focus {
+    background: #fff;
+}
+
+.uperSearch {
+    display: inline-block;
+    color: #333;
+}
+
+.search_r {
+    position: relative!important;
+}
+ .pull-right.m-right-sm{
+ 	padding:0!important;
+ 	 
+ }
+#searchH {
+    width: 100%!important;
+    top: 48px;
+    padding: 15px 10px 15px 22px;
+    position: inherit!important;
+    box-shadow: none;
+    background: #f6f9fa;
+    border: 1px dashed #d8d9d9;
+    margin-top: 10px;
+}
+
+#searchH .title_pro {
+    display: inline-block;
+    text-align: right;
+}
+
+#searchH input[placeholder] {
+    display: inline-block;
+    width: 270px;
+    background: #fff;
+}
+
+/*------------------reset--------------------*/
+
+.resetbutton {
+    cursor: pointer;
+    position: relative;
+    top: -34px;
+    left: -36px;
+}
+
+.search_l {
+    max-width: 80%!important;
+}
+.fixed-table-toolbar .columns {
+	top: 73px!important;
+}
+#sel-button {
+    float: right!important;
+    margin-right: 0px!important;
+    padding-right: 18px;
+}
+
+.search_r {
+    width: 90px!important;
+    height: 46px;
+}
+
+
+.bootstrap-select.form-control:not([class*=col-]) {
+    min-width: inherit!important;
+}
+.fixed-table-container{
+	border:1px solid #ddd;
+}
+#queryForm [type = 'submit']{
+	margin-top:6px;
+} 
+.modal-backdrop.fade.in{
+	z-index:1;
+}
+    
+.note_img.change-topimg{
+	display: none;
+}
+.dropdown-menu.open{
+	z-index:2;
+}
+.dropdown-menu .form_datetime{
+	width:150px!important;
+	display:inline-block;
+}
+.fixed-table-pagination{
+	z-index:1!important;
+}
+@media (min-width: 768px){
+	.modal-dialog{
+	    min-width:1000px!important;
+	}
+}
+.tableThead.tableFloatingHeaderOriginal{
+	z-index:10!important;
+}
+.modal-backdrop.fade.in{
+	z-index:100!important;
+}
+.floatdiv{
+	z-index:11!important;
+}
+#declare_no{
+	width:240px;
+}
+#table02 td{
+	padding-left:0px!important;
+	padding-right:0px!important;
+}
+.tdBox{
+	height:32px;
+	line-height:32px;
+	float:left;
+	border-bottom:1px solid #ddd;
+	width:100%;
+	padding:0 10px;
+}
+.lastBox{
+	height:32px;
+	line-height:32px;
+	float:left;
+	border-bottom:1px solid #ddd;
+	width:100%;
+	padding:0 10px;
+	border-bottom:none;
+}
+#table02 .firstTd{
+	padding-left:10px!important;
+	padding-right:10px!important;
+}
+.btn.dropdown-toggle.btn-default{
+	z-index:1;
+}
+#sku.stock_sku{
+	width:260px;
+}
+.declare_status .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a img.sel_icon{
+	display:none;
+}
+.datetimepicker{
+	z-index:2!important
+}
+.hight-coll{
+	color:#ff80c0;
+}
+.fixed-table-toolbar .columns{
+	position: absolute;
+	right: 125px;
+	top: 77px;
+}
+.fixed-table-toolbar .btn {
+    height: 36px;
+    width: 90px;
+}

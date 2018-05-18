@@ -1,0 +1,25 @@
+
+.table-body th{
+	height:38px;
+	background: #e8ecef;
+	border:1px solid black;
+}
+.table-body{
+	border:1px solid black;
+}
+.table-body td{
+	height:38px;
+	border:1px solid black;
+}
+.last-tr td{
+	border:none;
+}
+.last-tr td:nth-last-child(2){
+	border:1px solid black;
+}
+.last-tr td:nth-child(4){
+	font-size: 14px;
+	font-weight: bold;
+    color: black;
+}
+    
