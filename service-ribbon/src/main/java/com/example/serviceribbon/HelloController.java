@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-public class HelloController {
+
 
     @RestController
-    public class HelloControler {
+    public class HelloController {
 
         @Autowired
         HelloService helloService;
@@ -20,5 +19,5 @@ public class HelloController {
             return helloService.hiService(name);
         }
 
-    }
+    
 }
