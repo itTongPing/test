@@ -21,13 +21,11 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int deleteById(Integer id) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int update(User user) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
