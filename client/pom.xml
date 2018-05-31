@@ -36,6 +36,37 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        
+		     <!-- jdbc -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- mysql 驱动包 -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		</dependency>
+        <!-- fastJosn -->
+    <dependency>
+       <groupId>com.alibaba</groupId>
+       <artifactId>fastjson</artifactId>
+       <version>1.2.35</version>
+     </dependency>
+     
+        <!-- 热部署 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-devtools</artifactId>
+		    <optional>true</optional>
+		    <scope>true</scope>
+		</dependency>
+		<dependency>  
+  <groupId>com.rabbitmq</groupId>  
+    <artifactId>amqp-client</artifactId>  
+    <version>3.6.5</version>  
+</dependency> 
+        
     </dependencies>
 
     <dependencyManagement>

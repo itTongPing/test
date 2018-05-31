@@ -5,6 +5,7 @@ import rabbitmq.ConnectionUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.QueueingConsumer.Delivery;
 
 public class Consumer1 {
 	
@@ -32,7 +33,7 @@ public class Consumer1 {
 	  
 	        // 获取消息  
 	        while (true) {  
-	            QueueingConsumer.Delivery delivery = consumer.nextDelivery();  
+	            Delivery delivery = consumer.nextDelivery();  
 	            String message = new String(delivery.getBody());  
 	            System.out.println(" [消费者1] Received '" + message + "'");  
 	            //休眠  

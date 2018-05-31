@@ -3,10 +3,11 @@ package com.light.springboot.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.light.springboot.dao.UserDao;
 import com.light.springboot.domain.User;
-
+@Repository
 public class UserDaoImpl implements UserDao {
 
 	
@@ -15,8 +16,8 @@ public class UserDaoImpl implements UserDao {
 	private JdbcTemplate jdbcTemplate;
 	@Override
 	public int insert(User user) {
-		String sql = "insert into user values(?,?,?,?)";
-		return jdbcTemplate.update(sql, user.getId(),user.getUsername(),user.getPassword(),user.getBirthday());
+		String sql = "insert into user (id,username,password) values(?,?,?)";
+		return jdbcTemplate.update(sql, user.getId(),user.getUsername(),user.getPassword());
 	}
 
 	@Override

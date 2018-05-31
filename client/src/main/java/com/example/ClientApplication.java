@@ -1,4 +1,5 @@
-package com.example.client;
+package com.example;
+
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -13,15 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ClientApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ClientApplication.class, args);
-    }
+	
+	  public static void main(String[] args) {
+	        SpringApplication.run(ClientApplication.class, args);
+	    }
 
 
-    @Value("${server.port}")
-    String port;
-    @RequestMapping("/hi")
-    public String home(@RequestParam String name) {
-        return "hi "+name+",i am from port:" +port;
-    }
+	    @Value("${server.port}")
+	    String port;
+	    @RequestMapping("/hi")
+	    public String home(@RequestParam String name) {
+	        return "hi "+name+",i am from port:" +port;
+	    }
 }

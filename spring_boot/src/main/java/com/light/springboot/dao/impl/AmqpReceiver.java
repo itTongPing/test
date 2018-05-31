@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.light.springboot.configuration.AmqpConfiguration;
 
-@Component
+//@Component
 public class AmqpReceiver {
 	
 	/**
