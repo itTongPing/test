@@ -18,12 +18,12 @@ public class FastJsonController {
     public User test() {
         User user = new User();
         user.setId(1);
-        user.setUsername("jack");
+        user.setUsername("jack成");
         user.setPassword("jack123");
         user.setBirthday(new Date());
         
         // 模拟异常
-        int i = 1/0;
+       // int i = 1/0;
         return user;
     }
 }

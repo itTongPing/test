@@ -40,5 +40,16 @@ public class ListTest {
 	}
 		
 
+	@Test
+	public void test3(){
+		
+	String[] arr ={"a","b"};
+	String string = Arrays.toString(arr);
+	System.out.println(string);
+		
+	}
+	
+	
+	
 
 }

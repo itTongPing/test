@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.light.springboot.mapper.InfoManagerMapper" >
+
+  <resultMap id="ClazzResultMap" type="com.light.springboot.domain.ClazzEntity" >
+    <id column="classid" property="clazzID" jdbcType="INTEGER" />
+    <result column="classname" property="clazzName" jdbcType="VARCHAR" />
+    <collection property="studentList" column="classID" javaType="ArrayList" 
+                ofType="com.cn.hnust.pojo.StudentEntity" select="getStudentByClassID"/>
+  </resultMap>
+
+  <resultMap id="StudentResultMap" type="com.light.springboot.domain.StudentEntity">  
+    <id property="stuID" column="stuid" />  
+    <result property="stuName" column="stuname" />  
+    <result property="stuAge" column="stuage" />  
+    <result property="stuAddress" column="stuaddress" />
+  </resultMap>  
+
+<select id="getClassByID" resultMap="ClazzResultMap" parameterType="java.lang.Integer" >
+    select classID,className
+    from class_t
+    where classID = #{clazzID}
+</select>
+
+<select id="getStudentByClassID" resultMap="StudentResultMap" parameterType="java.lang.Integer" >
+    select stuNo,stuName,stuAge,stuAddress,classID
+    from student_t
+    where classID = #{clazzID}
+</select>
+
+</mapper>
