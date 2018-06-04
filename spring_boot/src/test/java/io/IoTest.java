@@ -1,5 +1,6 @@
 package io;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,9 +35,26 @@ public class IoTest {
 			fis.close();
 			fos.close();
 		}
+	}
+	
+	
+	
+	
+	public void testDelete(){
+		File file = new File("D://java//aa.xsl");
 		
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
