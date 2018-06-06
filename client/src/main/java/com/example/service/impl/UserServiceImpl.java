@@ -1,12 +1,21 @@
 package com.example.service.impl;
 
 
-import java.nio.channels.Channel;
-import java.sql.Connection;
+
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.dao.impl.UserDaoImpl;
 import com.example.domain.User;
 import com.example.utils.ConnectionUtils;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.QueueingConsumer.Delivery;
 
 @Service("userService")
 public class UserServiceImpl {
@@ -94,7 +103,4 @@ public class UserServiceImpl {
             }
         }  
 	}
-	
-	
-	
 }
