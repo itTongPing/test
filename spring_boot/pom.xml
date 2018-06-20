@@ -97,7 +97,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5</version>
 		</dependency>
-		
+	<!-- csv -->	
 	<dependency>
 	<groupId>net.sourceforge.javacsv</groupId>
    <artifactId>javacsv</artifactId>  

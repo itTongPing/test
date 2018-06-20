@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +15,18 @@ import org.junit.Test;
 
 import com.csvreader.CsvWriter;
 
-public class CSVTest {
+public  class  CSVTest {
     @Test
     public void write(){
     try {
              // 创建CSV写对象
             List<Student> ls=new ArrayList<Student>();
-             for (int i = 0; i <10; i++) {
+            for (int i = 0; i <10; i++) {
             Student s=new Student();
-            s.setName("小帅"+i);
+            s.setName("小---帅"+i);
             s.setAge(i);
-            s.setScore("100"+i);
-            s.setSex("男"+i);
+            s.setScore("1    00"+i);
+            s.setSex("男   "+i);
             ls.add(s);
 }
              //写入临时文件
@@ -47,15 +49,18 @@ public class CSVTest {
 
              System.err.println(e-s);
      
-             
+            
       File fileLoad = new File(tempFile.getCanonicalPath());    
       OutputStream out = new FileOutputStream("D:\\aa.csv");
+      OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
       InputStream  in = new FileInputStream(fileLoad);
+      InputStreamReader isr = new InputStreamReader(in);
       int n;
-     byte[] b = new byte[10240];
-  	while ((n = in.read(b)) != -1) {  
-    	 out.write(b, 0, n); //每次写入out1024字节 
+     char[] b = new char[10240];
+  	while ((n = isr.read(b)) != -1) {  
+    	 osw.write(b, 0, n); //每次写入out1024字节 
   	}  
+  	     osw.flush();
     	 in.close();  
     	 out.close();
           

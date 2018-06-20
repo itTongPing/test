@@ -3,8 +3,8 @@ package csv;
 public class Student {
 	
 	
-	    private String name;
 	    private Integer age;
+	    private String name;
 	    private String score;
 	    private String sex;
 		public String getName() {
