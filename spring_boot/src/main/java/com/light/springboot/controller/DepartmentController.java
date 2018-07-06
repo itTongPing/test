@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.light.springboot.dao.DepartmentMapper;
 import com.light.springboot.domain.Department;
 import com.light.springboot.service.DepartmentService;
+import com.light.springboot.service.EmployeeService;
 
 @RestController           //使用restController时下面不用指定@responseBody()(不解析视图)
 @RequestMapping("department")
@@ -23,6 +25,11 @@ public class DepartmentController {
 	DepartmentMapper departmentMapper;
 	
 	@Autowired DepartmentService departmentService;
+	
+	
+	@Autowired
+	@Qualifier("service")
+    EmployeeService employeeService;
 	
 	@RequestMapping("insert")
 	public String insert(){
